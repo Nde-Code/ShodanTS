@@ -4,6 +4,8 @@ A lightweight and modern [Shodan API](https://www.shodan.io/) client written in 
 
 This client is fully built based on the Shodan API documentation: https://developer.shodan.io/api
 
+Please note that this project is independently developed and not officially affiliated with or endorsed by Shodan. 
+
 > At the beginning, I just needed a small client to help me with some personal projects. There was already a small client called [shodan_deno](https://github.com/aldinp16/shodan_deno), but it was too limited for my needs. So I decided to create my own from scratch with a completely reinvented structure and share it on my GitHub.
 
 ## Note:
