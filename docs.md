@@ -224,7 +224,7 @@ const getScanFromId = await shodanAPIClient.getScanById("Scan ID");
 
 console.log(getScanFromId);
 ```
-## [GET] `getSavedSearchQueries(page?, sort?, order?)` – Retrieve a list of saved search queries
+## [GET] `getSavedSearchQueries(page?, sort?, order?)` – Retrieve a list of saved search queries:
 
 This method helps you retrieve the list of search queries that users have saved in Shodan's database.
 
@@ -244,7 +244,7 @@ const getSavedSearchQueriesMethod = await shodanClientApi.getSavedSearchQueries(
 console.log(getSavedSearchQueriesMethod);
 ```
 
-## [GET] `getDirectoryWithSavedSearchQueries(query, page?)` – Retrieve the directory of saved search queries
+## [GET] `getDirectoryWithSavedSearchQueries(query, page?)` – Retrieve the directory of saved search queries:
 
 This method helps you search through the directory of search queries saved by users in Shodan's database.
 
@@ -263,7 +263,7 @@ const directoryWithSavedSearchQueriesMethod = await shodanClientApi.getDirectory
 console.log(directoryWithSavedSearchQueriesMethod);
 ```
 
-## [GET] `getTagsOfSavedSearchQueries(size?)` – Retrieve popular tags from saved search queries
+## [GET] `getTagsOfSavedSearchQueries(size?)` – Retrieve popular tags from saved search queries:
 
 This method helps you retrieve the most frequently used tags in saved search queries.
 
@@ -281,7 +281,7 @@ const getTagsFromSavedQueriesMethod = await shodanClientApi.getTagsOfSavedSearch
 console.log(getTagsFromSavedQueriesMethod);
 ```
 
-## [GET] `getAccountProfile()` – Retrieve information about the account associated with your API key
+## [GET] `getAccountProfile()` – Retrieve information about the account associated with your API key:
 
 This method allows you to retrieve details about the account linked to your API key.
 
@@ -298,7 +298,7 @@ console.log(getAccountProfileMethod);
 ```
 
 
-## [GET] `getAllDNSFromADomain(domain, history?, type?, page?)` – Retrieve subdomains and other DNS records for a domain
+## [GET] `getAllDNSFromADomain(domain, history?, type?, page?)` – Retrieve subdomains and other DNS records for a domain:
 
 This method retrieves subdomains and other DNS records associated with the specified domain.
 
@@ -324,7 +324,7 @@ console.log(getAllDNSFromADomainMethod);
 
 ### Be careful: the client throws an error if the domain isn’t in a valid format !
 
-## [GET] `DNSLookup(hostnames)` – Retrieve the IP address(es) for a list of domains
+## [GET] `DNSLookup(hostnames)` – Retrieve the IP address(es) for a list of domains:
 
 This method retrieves the IPv4 or IPv6 address(es) associated with one or more domain names.
 
@@ -342,7 +342,7 @@ console.log(DNSLookupMethod);
 
 ### Be careful: the client throws an error if the list of domains (or a single domain) isn’t in a valid format. 
 
-## [GET] `reverseDNSLookup(ips)` – Retrieve domain(s) associated with a list of IP addresses
+## [GET] `reverseDNSLookup(ips)` – Retrieve domain(s) associated with a list of IP addresses:
 
 This method performs a reverse DNS lookup to retrieve domain names associated with a list of IP addresses.
 
@@ -360,7 +360,7 @@ console.log(reverseDNSLookupMethod);
 
 ### Be careful: the client throws an error if the IP list (or a single IP) isn’t in a valid format.
 
-## [GET] `getHTTPHeaders()` – Retrieve HTTP headers sent by the client to a web server
+## [GET] `getHTTPHeaders()` – Retrieve HTTP headers sent by the client to a web server:
 
 This method allows you to retrieve the HTTP headers that the client sends to a web server.
 
@@ -376,7 +376,7 @@ const getHTTPHeadersMethod = await shodanClientApi.getHTTPHeaders();
 console.log(getHTTPHeadersMethod);
 ```
 
-## [GET] `getMyIP()` – Retrieve your public IP address
+## [GET] `getMyIP()` – Retrieve your public IP address:
 
 This method allows you to retrieve your current public IP address.
 
@@ -393,7 +393,7 @@ console.log(getMyIPMethod);
 // You just got your IP address! No JSON object returned.
 ```
 
-## [GET] `getAPIPlanInformation()` – Retrieve details about your API plan
+## [GET] `getAPIPlanInformation()` – Retrieve details about your API plan:
 
 This method allows you to retrieve information about your API plan, usage limits, and more.
 

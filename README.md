@@ -4,12 +4,12 @@ A lightweight and modern [Shodan API](https://www.shodan.io/) client written in 
 
 This client is fully built based on the Shodan API documentation: https://developer.shodan.io/api
 
-> At the beginning, I just needed a small client to help me with some personal projects. There was already a small client called [shodan_deno](https://github.com/aldinp16/shodan_deno), but it was too limited for **my needs**. So I decided to create my own from scratch and share it on my GitHub.
+> At the beginning, I just needed a small client to help me with some personal projects. There was already a small client called [shodan_deno](https://github.com/aldinp16/shodan_deno), but it was too limited for my needs. So I decided to create my own from scratch with a completely reinvented structure and share it on my GitHub.
 
 ## Note:
 Some methods are not currently implemented. These include:
 
-- `Internet scan` via the endpoint `shodan/scan/internet`. This requires an enterprise license.
+- `Internet scan` via `shodan/scan/internet` (requires an enterprise license)
 - `Network Alerts`
 - `Notifiers`
 - `Bulk Data` (requires an enterprise license)
@@ -100,4 +100,4 @@ This project is licensed under the MIT License — see the [LICENSE](./LICENSE) 
 
 ## 🧠 Credits
 
-Built with ❤️ using TypeScript + Deno by Nde-Code.
+Built with ❤️ using TypeScript + Deno by [Nde-Code](https://nde-code.github.io/).
