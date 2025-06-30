@@ -413,7 +413,7 @@ console.log(getAPIPlanInformationMethod);
 
 Each method returns a **Promise** that resolves to a JSON-formatted response of type **unknown**, except for `getMyIP()`, which returns plain text containing your IP address.
 
-> This client doesn't implement a type for each response to avoid conflicts with the Shodan API format. If you want to see what a response looks like, feel free to check [developer.shodan.io](https://developer.shodan.io/) or use `console.log` to inspect it yourself. Then, feel free to create your own types based on your needs.
+> This client doesn't implement a type for each response to avoid conflicts with the Shodan API format. If you want to see what a response looks like, feel free to check [developer.shodan.io](https://developer.shodan.io/) or use `console.log` to inspect it yourself. I implemented this approach to allow developers the flexibility to define their own types according to their needs and to maintain the client as lightweight as possible.
 
 > Make sure to use `await` when calling these methods to properly handle the returned data.
 
