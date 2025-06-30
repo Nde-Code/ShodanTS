@@ -6,7 +6,7 @@ This client is fully built based on the Shodan API documentation: https://develo
 
 Please note that this project is independently developed and not officially affiliated with or endorsed by Shodan. 
 
-> At the beginning, I just needed a small client to help me with some personal projects. There was already a small client called [shodan_deno](https://github.com/aldinp16/shodan_deno), but it was too limited for my needs. So I decided to create my own from scratch with a completely reinvented structure and share it on my GitHub.
+> At the beginning, I just needed a small client to help me with some personal projects. There was already a small nice client called [shodan_deno](https://github.com/aldinp16/shodan_deno), but it was too limited for my needs. So I decided to create my own from scratch with a completely reinvented structure and share it on my GitHub.
 
 ## Note:
 Some methods are not currently implemented. These include:
