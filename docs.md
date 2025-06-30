@@ -411,7 +411,7 @@ console.log(getAPIPlanInformationMethod);
 
 ## Types of responses:
 
-Each method returns a **Promise** that resolves to a **JSON** response, except for `getMyIP()`, which returns plain text (your IP address).
+Each method returns a **Promise** that resolves to a JSON-formatted response of type **unknown**, except for `getMyIP()`, which returns plain text containing your IP address.
 
 > This client doesn't implement a type for each response to avoid conflicts with the Shodan API format. If you want to see what a response looks like, feel free to check [developer.shodan.io](https://developer.shodan.io/) or use `console.log` to inspect it yourself. Then, feel free to create your own types based on your needs.
 
