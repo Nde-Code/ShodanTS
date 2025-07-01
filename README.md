@@ -54,32 +54,35 @@ import { shodanClient } from "https://raw.githubusercontent.com/Nde-Code/ShodanT
 // Of course, never do this in production (never put your secret key directly in the code)!
 // Instead, use environment variables configured via a .env file.
 // Take a look at: https://docs.deno.com/runtime/reference/env_variables/
-const client = new shodanClient("API_KEY");
+const client = new shodanClient("API_Key");
 
-const myAPIInfo = await client.getAPIPlanInformation();
+// For JSON:
+const myProfile = await client.getAccountProfile();
 
-// Or:
-// If you want to customize your own type:
-interface myAPIInfoType {
+interface myProfileObject {
 
-    scan_credits: number
+    member: boolean
 
-    plan: string
+    credits: number
 
-    query_credits: number
+    display_name: unknown
 
-} 
+    created: string
 
-const myAPIInfoWithType = await client.getAPIPlanInformation<myAPIInfoType>();
+}
 
-console.log(myAPIInfo);
+// If you like TypeScript types and want to create your own:
+const myProfileAsType = await client.getAccountProfile<myProfileObject>();
 
-console.log(myAPIInfoWithType.scan_credits, "scan credits");
+console.log("Full JSON:", myProfile);
 
-console.log(myAPIInfoWithType.plan, "plan");
+console.log("Member:", myProfileAsType.member);
 
-console.log(myAPIInfoWithType.query_credits, "query credits");;
+console.log("You have used", myProfileAsType.credits, "credits this month.");
 
+console.log("Displayed name:", myProfileAsType.display_name);
+
+console.log("Account created on:", myProfileAsType.created);
 ````
 
 Run your file with the following command:
