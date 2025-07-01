@@ -6,7 +6,7 @@ import { shodanClient } from "./mod.ts";
 const client = new shodanClient("API_Key");
 
 // For JSON:
-const myProfile = await client.getProtocols();
+const myProfile = await client.getAccountProfile();
 
 interface myProfileObject {
 
