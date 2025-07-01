@@ -49,13 +49,36 @@ deno run --allow-net example.ts
 #### Or use the code below:
 
 ```ts
-import { shodanClient } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v1.0.0/mod.ts";
+import { shodanClient } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v1.1.0/mod.ts";
 
+// Of course, never do this in production (never put your secret key directly in the code)!
+// Instead, use environment variables configured via a .env file.
+// Take a look at: https://docs.deno.com/runtime/reference/env_variables/
 const client = new shodanClient("API_KEY");
 
 const myAPIInfo = await client.getAPIPlanInformation();
 
+// Or:
+// If you want to customize your own type:
+interface myAPIInfoType {
+
+    scan_credits: number
+
+    plan: string
+
+    query_credits: number
+
+} 
+
+const myAPIInfoWithType = await client.getAPIPlanInformation<myAPIInfoType>();
+
 console.log(myAPIInfo);
+
+console.log(myAPIInfoWithType.scan_credits, "scans");
+
+console.log(myAPIInfoWithType.plan, "plan");
+
+console.log(myAPIInfoWithType.query_credits, "query credits");;
 
 ````
 

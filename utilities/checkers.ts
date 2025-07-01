@@ -1,3 +1,5 @@
+// This regular expression has, of course, been tested against ReDoS attacks.
+// I used: https://devina.io/redos-checker
 export class checkers {
 
     public static isAnIpV4(ip: string): boolean {

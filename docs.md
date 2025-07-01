@@ -18,9 +18,9 @@ const shodanAPIClient = new shodanClient("API_Key", 8000 /* ms */);
 
 - Some requests can take longer to process, so increasing the timeout can be helpful instead of relying on an unlimited request duration.
 
-# Now you can look at the supported methods:
+# Next, look at the supported methods:
 
-## [GET] `searchHostIP(ip, minify?, history?)` – Retrieve information about an IP address:
+## [GET] `searchHostIP<T>(ip, minify?, history?)` – Retrieve information about an IP address:
 
 This method is used to retrieve information about a specific IP address.
 
@@ -32,16 +32,14 @@ This method is used to retrieve information about a specific IP address.
 
 ### Sample:
 ```js
-const searchHostIPMethod = await shodanAPIClient.searchHostIP("8.8.8.8", true, false);
+const searchHostIPMethod = await shodanAPIClient.searchHostIP<yourType>("8.8.8.8", true, false);
 
-// or const searchHostIPMethod = await shodanAPIClient.searchHostIP("8.8.8.8"); if no options required.
-
-console.log(searchHostIPMethod);
+// or const searchHostIPMethod = await shodanAPIClient.searchHostIP<yourType>("8.8.8.8"); if no options required.
 ```
 
 ### Be careful: the client throws an error if the IP address isn’t in a valid IPv4 or IPv6 format !
 
-## [GET] `searchHostCount(query, facets?)` – Retrieve the count of services found:
+## [GET] `searchHostCount<T>(query, facets?)` – Retrieve the count of services found:
 
 This method is used to **count** (and only count) the number of devices found using a query.  
 
@@ -52,14 +50,12 @@ This method is used to **count** (and only count) the number of devices found us
 
 ### Sample:
 ```js
-const searchHostCountMethod = await shodanAPIClient.searchHostCount('port:22', 'country:2')
+const searchHostCountMethod = await shodanAPIClient.searchHostCount<yourType>('port:22', 'country:2')
 
-// or const searchHostCountMethod = await shodanAPIClient.searchHostCount('port:22'); if no options required.
-
-console.log(searchHostCountMethod)
+// or const searchHostCountMethod = await shodanAPIClient.searchHostCount<yourType>('port:22'); if no options required.
 ```
 
-## [GET] `searchHostResearch(query, facets?, page?, minify?)` – Search Shodan's host database:
+## [GET] `searchHostResearch<T>(query, facets?, page?, minify?)` – Search Shodan's host database:
 
 This method allows you to search Shodan’s host (banner) database using a custom query, similar to how searches work on the Shodan website.
 
@@ -72,14 +68,12 @@ This method allows you to search Shodan’s host (banner) database using a custo
 
 ### Sample:
 ```js
-const searchHostSearchMethod = await shodanAPIClient.searchHostResearch("apache country:DE", "org", 3, true);
+const searchHostSearchMethod = await shodanAPIClient.searchHostResearch<yourType>("apache country:DE", "org", 3, true);
 
-// or const searchHostSearchMethod = await shodanAPIClient.searchHostResearch("apache country:US"); if no options required.
-
-console.log(searchHostSearchMethod);
+// or const searchHostSearchMethod = await shodanAPIClient.searchHostResearch<yourType>("apache country:US"); if no options required.
 ```
 
-## [GET] `getSearchFacets()` - Retrieve available search facets from Shodan's database:
+## [GET] `getSearchFacets<T>()` - Retrieve available search facets from Shodan's database:
 
 This method helps you retrieve the available Shodan facets for searching.
 
@@ -88,12 +82,10 @@ None
 
 ### Sample:
 ```js
-const getFacetsMethod = await shodanAPIClient.getSearchFacets();
-
-console.log(getFacetsMethod);
+const getFacetsMethod = await shodanAPIClient.getSearchFacets<yourType>();
 ```
 
-## [GET] `getSearchFilters()` - Retrieve available search filters from Shodan's database:
+## [GET] `getSearchFilters<T>()` - Retrieve available search filters from Shodan's database:
 
 This method helps you retrieve the available Shodan filters for searching.
 
@@ -102,12 +94,10 @@ None
 
 ### Sample:
 ```js
-const getFiltersMethod = await shodanAPIClient.getSearchFilters();
-
-console.log(getFiltersMethod);
+const getFiltersMethod = await shodanAPIClient.getSearchFilters<yourType>();
 ```
 
-## [GET] `getSearchTokens(query)` - Retrieve a lexed JSON of the filters you've written:
+## [GET] `getSearchTokens<T>(query)` - Retrieve a lexed JSON of the filters you've written:
 
 This method helps you retrieve the parsed filters you've written.
 
@@ -117,12 +107,10 @@ This method helps you retrieve the parsed filters you've written.
 
 ### Sample:
 ```js
-const getTokensMethod = await shodanAPIClient.getSearchTokens("Raspbian port:22")
-
-console.log(getTokensMethod);
+const getTokensMethod = await shodanAPIClient.getSearchTokens<yourType>("Raspbian port:22")
 ```
 
-## [GET] `getPorts()` – Retrieve available ports from Shodan's database:
+## [GET] `getPorts<T>()` – Retrieve available ports from Shodan's database:
 
 This method retrieves the list of ports available in Shodan's database.
 
@@ -131,12 +119,10 @@ None
 
 ### Sample:
 ```js
-const getPortsMethod = await shodanAPIClient.getPorts();
-
-console.log(getPortsMethod)
+const getPortsMethod = await shodanAPIClient.getPorts<yourType>();
 ```
 
-## [GET] `getProtocols()` – Retrieve available protocols from Shodan's database:
+## [GET] `getProtocols<T>()` – Retrieve available protocols from Shodan's database:
 
 This method retrieves the list of protocols available in Shodan's database.
 
@@ -145,12 +131,10 @@ None
 
 ### Sample:
 ```js
-const getProtocolsMethod = await shodanAPIClient.getProtocols();
-
-console.log(getProtocolsMethod);
+const getProtocolsMethod = await shodanAPIClient.getProtocols<yourType>();
 ```
 
-## [POST] `scanIps(body)` – Submit a scan request to Shodan:
+## [POST] `scanIps<T>(body)` – Submit a scan request to Shodan:
 
 This method allows you to submit a scan request to Shodan, specifying which IPs and services should be crawled.
 
@@ -189,14 +173,12 @@ const bodyJSON: ShodanRequestBody = {
 
 };
 
-const scanIpsMethod = await shodanAPIClient.scanIps(bodyJSON);
-
-console.log(scanIpsMethod);
+const scanIpsMethod = await shodanAPIClient.scanIps<yourType>(bodyJSON);
 ```
 
 ### Be careful: the client throws an error if IPs (CIDR) aren’t in a valid format !
 
-## [GET] `getScans()` – Retrieve the list of current scans:
+## [GET] `getScans<T>()` – Retrieve the list of current scans:
 
 This method retrieves the list of scans you are currently running.
 
@@ -205,12 +187,10 @@ None
 
 ### Sample:
 ```js
-const getListOfScans = await shodanAPIClient.getScans();
-
-console.log(getListOfScans)
+const getListOfScans = await shodanAPIClient.getScans<yourType>();
 ```
 
-## [GET] `getScanById(id)` – Retrieve a scan by ID:
+## [GET] `getScanById<T>(id)` – Retrieve a scan by ID:
 
 This method retrieves the details of a specific scan using its ID.
 
@@ -220,11 +200,10 @@ This method retrieves the details of a specific scan using its ID.
 
 ### Sample:
 ```js
-const getScanFromId = await shodanAPIClient.getScanById("Scan ID");
-
-console.log(getScanFromId);
+const getScanFromId = await shodanAPIClient.getScanById<yourType>("Scan ID");
 ```
-## [GET] `getSavedSearchQueries(page?, sort?, order?)` – Retrieve a list of saved search queries:
+
+## [GET] `getSavedSearchQueries<T>(page?, sort?, order?)` – Retrieve a list of saved search queries:
 
 This method helps you retrieve the list of search queries that users have saved in Shodan's database.
 
@@ -237,14 +216,12 @@ This method helps you retrieve the list of search queries that users have saved 
 ### Sample
 
 ```ts
-const getSavedSearchQueriesMethod = await shodanClientApi.getSavedSearchQueries();
+const getSavedSearchQueriesMethod = await shodanClientApi.getSavedSearchQueries<yourType>();
 
-// const getSavedSearchQueriesMethod = await shodanClientApi.getSavedSearchQueries(3, "votes", "desc"); if options needed.
-
-console.log(getSavedSearchQueriesMethod);
+// const getSavedSearchQueriesMethod = await shodanClientApi.getSavedSearchQueries<yourType>(3, "votes", "desc"); if options needed.
 ```
 
-## [GET] `getDirectoryWithSavedSearchQueries(query, page?)` – Retrieve the directory of saved search queries:
+## [GET] `getDirectoryWithSavedSearchQueries<T>(query, page?)` – Retrieve the directory of saved search queries:
 
 This method helps you search through the directory of search queries saved by users in Shodan's database.
 
@@ -256,14 +233,12 @@ This method helps you search through the directory of search queries saved by us
 ### Sample
 
 ```ts
-const directoryWithSavedSearchQueriesMethod = await shodanClientApi.getDirectoryWithSavedSearchQueries("country:US");
+const directoryWithSavedSearchQueriesMethod = await shodanClientApi.getDirectoryWithSavedSearchQueries<yourType>("country:US");
 
-// Or const directoryWithSavedSearchQueriesMethod = await shodanClientApi.getDirectoryWithSavedSearchQueries("country:US", 3); if you need more pages.
-
-console.log(directoryWithSavedSearchQueriesMethod);
+// Or const directoryWithSavedSearchQueriesMethod = await shodanClientApi.getDirectoryWithSavedSearchQueries<yourType>("country:US", 3); if you need more pages.
 ```
 
-## [GET] `getTagsOfSavedSearchQueries(size?)` – Retrieve popular tags from saved search queries:
+## [GET] `getTagsOfSavedSearchQueries<T>(size?)` – Retrieve popular tags from saved search queries:
 
 This method helps you retrieve the most frequently used tags in saved search queries.
 
@@ -274,14 +249,12 @@ This method helps you retrieve the most frequently used tags in saved search que
 ### Sample
 
 ```ts
-const getTagsFromSavedQueriesMethod = await shodanClientApi.getTagsOfSavedSearchQueries();
+const getTagsFromSavedQueriesMethod = await shodanClientApi.getTagsOfSavedSearchQueries<yourType>();
 
-// Or const getTagsFromSavedQueriesMethod = await shodanClientApi.getTagsOfSavedSearchQueries(5); if you need a size.
-
-console.log(getTagsFromSavedQueriesMethod);
+// Or const getTagsFromSavedQueriesMethod = await shodanClientApi.getTagsOfSavedSearchQueries<yourType>(5); if you need a size.
 ```
 
-## [GET] `getAccountProfile()` – Retrieve information about the account associated with your API key:
+## [GET] `getAccountProfile<T>()` – Retrieve information about the account associated with your API key:
 
 This method allows you to retrieve details about the account linked to your API key.
 
@@ -292,13 +265,11 @@ None.
 ### Sample
 
 ```ts
-const getAccountProfileMethod = await shodanClientApi.getAccountProfile();
-
-console.log(getAccountProfileMethod);
+const getAccountProfileMethod = await shodanClientApi.getAccountProfile<yourType>();
 ```
 
 
-## [GET] `getAllDNSFromADomain(domain, history?, type?, page?)` – Retrieve subdomains and other DNS records for a domain:
+## [GET] `getAllDNSFromADomain<T>(domain, history?, type?, page?)` – Retrieve subdomains and other DNS records for a domain:
 
 This method retrieves subdomains and other DNS records associated with the specified domain.
 
@@ -314,17 +285,15 @@ This method retrieves subdomains and other DNS records associated with the speci
 ### Sample
 
 ```ts
-const getAllDNSFromADomainMethod = await shodanClientApi.getAllDNSFromADomain("google.com", false, "CNAME", 1);
+const getAllDNSFromADomainMethod = await shodanClientApi.getAllDNSFromADomain<yourType>("google.com", false, "CNAME", 1);
 
 /* Or, if no options are needed:
-const getAllDNSFromADomainMethod = await shodanClientApi.getAllDNSFromADomain("google.com"); */
-
-console.log(getAllDNSFromADomainMethod);
+const getAllDNSFromADomainMethod = await shodanClientApi.getAllDNSFromADomain<yourType>("google.com"); */
 ```
 
 ### Be careful: the client throws an error if the domain isn’t in a valid format !
 
-## [GET] `DNSLookup(hostnames)` – Retrieve the IP address(es) for a list of domains:
+## [GET] `DNSLookup<T>(hostnames)` – Retrieve the IP address(es) for a list of domains:
 
 This method retrieves the IPv4 or IPv6 address(es) associated with one or more domain names.
 
@@ -335,14 +304,12 @@ This method retrieves the IPv4 or IPv6 address(es) associated with one or more d
 ### Sample
 
 ```ts
-const DNSLookupMethod = await shodanClientApi.DNSLookup("google.com,shodan.io");
-
-console.log(DNSLookupMethod);
+const DNSLookupMethod = await shodanClientApi.DNSLookup<yourType>("google.com,shodan.io");
 ```
 
 ### Be careful: the client throws an error if the list of domains (or a single domain) isn’t in a valid format. 
 
-## [GET] `reverseDNSLookup(ips)` – Retrieve domain(s) associated with a list of IP addresses:
+## [GET] `reverseDNSLookup<T>(ips)` – Retrieve domain(s) associated with a list of IP addresses:
 
 This method performs a reverse DNS lookup to retrieve domain names associated with a list of IP addresses.
 
@@ -353,14 +320,12 @@ This method performs a reverse DNS lookup to retrieve domain names associated wi
 ### Sample
 
 ```ts
-const reverseDNSLookupMethod = await shodanClientApi.reverseDNSLookup("8.8.8.8,1.1.1.1");
-
-console.log(reverseDNSLookupMethod);
+const reverseDNSLookupMethod = await shodanClientApi.reverseDNSLookup<yourType>("8.8.8.8,1.1.1.1");
 ```
 
 ### Be careful: the client throws an error if the IP list (or a single IP) isn’t in a valid format.
 
-## [GET] `getHTTPHeaders()` – Retrieve HTTP headers sent by the client to a web server:
+## [GET] `getHTTPHeaders<T>()` – Retrieve HTTP headers sent by the client to a web server:
 
 This method allows you to retrieve the HTTP headers that the client sends to a web server.
 
@@ -371,12 +336,10 @@ None.
 ### Sample
 
 ```ts
-const getHTTPHeadersMethod = await shodanClientApi.getHTTPHeaders();
-
-console.log(getHTTPHeadersMethod);
+const getHTTPHeadersMethod = await shodanClientApi.getHTTPHeaders<yourType>();
 ```
 
-## [GET] `getMyIP()` – Retrieve your public IP address:
+## [GET] `getMyIP<T>()` – Retrieve your public IP address:
 
 This method allows you to retrieve your current public IP address.
 
@@ -387,13 +350,10 @@ None.
 ### Sample
 
 ```ts
-const getMyIPMethod = await shodanClientApi.getMyIP();
-
-console.log(getMyIPMethod);
-// You just got your IP address! No JSON object returned.
+const getMyIPMethod = await shodanClientApi.getMyIP<yourType>();
 ```
 
-## [GET] `getAPIPlanInformation()` – Retrieve details about your API plan:
+## [GET] `getAPIPlanInformation<T>()` – Retrieve details about your API plan:
 
 This method allows you to retrieve information about your API plan, usage limits, and more.
 
@@ -404,16 +364,15 @@ None.
 ### Sample
 
 ```ts
-const getAPIPlanInformationMethod = await shodanClientApi.getAPIPlanInformation();
-
-console.log(getAPIPlanInformationMethod);
+const getAPIPlanInformationMethod = await shodanClientApi.getAPIPlanInformation<yourType>();
 ```
 
 ## Types of responses:
 
-Each method returns a **Promise** that resolves to a JSON-formatted response of type **unknown**, except for `getMyIP()`, which returns plain text containing your IP address.
+All methods return a **Promise** resolving to a JSON response typed as the generic `T` or `unknown`, except for `getMyIP<T>()`, which returns plain text with your IP address.
 
-> This client doesn't implement a type for each response to avoid conflicts with the Shodan API format. If you want to see what a response looks like, feel free to check [developer.shodan.io](https://developer.shodan.io/) or use `console.log` to inspect it yourself. I implemented this approach to allow developers the flexibility to define their own types according to their needs and to maintain the client as lightweight as possible.
+
+> This client doesn’t implement specific types for each response to avoid conflicts with the varying Shodan API formats, but it now supports generics, allowing you to retrieve data as `unknown` or as a custom type based on your needs.
 
 > Make sure to use `await` when calling these methods to properly handle the returned data.
 
