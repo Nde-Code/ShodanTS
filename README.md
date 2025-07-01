@@ -74,7 +74,7 @@ const myAPIInfoWithType = await client.getAPIPlanInformation<myAPIInfoType>();
 
 console.log(myAPIInfo);
 
-console.log(myAPIInfoWithType.scan_credits, "scans");
+console.log(myAPIInfoWithType.scan_credits, "scan credits");
 
 console.log(myAPIInfoWithType.plan, "plan");
 
