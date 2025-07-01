@@ -24,49 +24,49 @@ export class shodanClient {
 
         if (!checkers.isAnIpV4(ip) && !checkers.isAnIpV6(ip)) throw new Error('Error with /shodan/host/{ip}: the ip ' + ip + ' is not a valid ip addresse.')
         
-        return await this.shodanHTTPClientObject.get(`shodan/host/${ip}?${this.buildQueryParams({ minify, history })}`);
+        return await this.shodanHTTPClientObject.get<T>(`shodan/host/${ip}?${this.buildQueryParams({ minify, history })}`);
 
     }
 
     public async searchHostCount<T>(query: string, facets?: string): Promise<T> {
                 
-        return await this.shodanHTTPClientObject.get(`shodan/host/count?${this.buildQueryParams({ query, facets })}`);
+        return await this.shodanHTTPClientObject.get<T>(`shodan/host/count?${this.buildQueryParams({ query, facets })}`);
 
     }
 
     public async searchHostResearch<T>(query: string, facets?: string, page?: number, minify?: boolean ): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`shodan/host/search?${this.buildQueryParams({ query, facets, page, minify })}`);
+        return await this.shodanHTTPClientObject.get<T>(`shodan/host/search?${this.buildQueryParams({ query, facets, page, minify })}`);
 
     }
 
     public async getSearchFacets<T>(): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`shodan/host/search/facets?key=${this.secretShodanKey}`);
+        return await this.shodanHTTPClientObject.get<T>(`shodan/host/search/facets?key=${this.secretShodanKey}`);
 
     }
 
     public async getSearchFilters<T>(): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`shodan/host/search/filters?key=${this.secretShodanKey}`);
+        return await this.shodanHTTPClientObject.get<T>(`shodan/host/search/filters?key=${this.secretShodanKey}`);
 
     }
 
     public async getSearchTokens<T>(query: string): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`shodan/host/search/tokens?${this.buildQueryParams({ query })}`);
+        return await this.shodanHTTPClientObject.get<T>(`shodan/host/search/tokens?${this.buildQueryParams({ query })}`);
 
     }
 
     public async getPorts<T>(): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`shodan/ports?key=${this.secretShodanKey}`);
+        return await this.shodanHTTPClientObject.get<T>(`shodan/ports?key=${this.secretShodanKey}`);
 
     }
 
     public async getProtocols<T>(): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`shodan/protocols?key=${this.secretShodanKey}`);
+        return await this.shodanHTTPClientObject.get<T>(`shodan/protocols?key=${this.secretShodanKey}`);
 
     }
 
@@ -78,43 +78,43 @@ export class shodanClient {
 
         }
 
-        return await this.shodanHTTPClientObject.post(`shodan/scan?key=${this.secretShodanKey}`, body)
+        return await this.shodanHTTPClientObject.post<T>(`shodan/scan?key=${this.secretShodanKey}`, body)
 
     }
 
     public async getScans<T>(): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`shodan/scans?key=${this.secretShodanKey}`);
+        return await this.shodanHTTPClientObject.get<T>(`shodan/scans?key=${this.secretShodanKey}`);
         
     }
 
     public async getScansById<T>(id: string): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`shodan/scan/${id}?key=${this.secretShodanKey}`);
+        return await this.shodanHTTPClientObject.get<T>(`shodan/scan/${id}?key=${this.secretShodanKey}`);
         
     }
 
     public async getSavedSearchQueries<T>(page?: number, sort?: "votes" | "timestamp", order?: "asc" | "desc"): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`shodan/query?${this.buildQueryParams({ page, sort, order })}`)
+        return await this.shodanHTTPClientObject.get<T>(`shodan/query?${this.buildQueryParams({ page, sort, order })}`)
 
     }
 
     public async getDirectoryWithSavedSearchQueries<T>(query: string, page?: number): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`shodan/query/search?${this.buildQueryParams({ query, page })}`);
+        return await this.shodanHTTPClientObject.get<T>(`shodan/query/search?${this.buildQueryParams({ query, page })}`);
 
     }
 
     public async getTagsOfSavedSearchQueries<T>(size?: number): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`shodan/query/tags?${this.buildQueryParams({ size })}`);
+        return await this.shodanHTTPClientObject.get<T>(`shodan/query/tags?${this.buildQueryParams({ size })}`);
 
     }
 
     public async getAccountProfile<T>(): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`account/profile?key=${this.secretShodanKey}`);
+        return await this.shodanHTTPClientObject.get<T>(`account/profile?key=${this.secretShodanKey}`);
 
     }
 
@@ -122,7 +122,7 @@ export class shodanClient {
 
         if(!checkers.isAValidDomain(domain)) throw new Error("Error with dns/domain/{domain}: the domain " + domain + " isn't in a valid format.")
 
-        return await this.shodanHTTPClientObject.get(`dns/domain/${domain}?${this.buildQueryParams({ history, type, page })}`); 
+        return await this.shodanHTTPClientObject.get<T>(`dns/domain/${domain}?${this.buildQueryParams({ history, type, page })}`); 
 
     }
 
@@ -130,7 +130,7 @@ export class shodanClient {
 
         if (!checkers.isAValidDomainsList(hostnames)) throw new Error("Error with /dns/resolve: the hostnames list " + hostnames + "isn't in a valid format.")
 
-        return await this.shodanHTTPClientObject.get(`dns/resolve?${this.buildQueryParams({ hostnames })}`)
+        return await this.shodanHTTPClientObject.get<T>(`dns/resolve?${this.buildQueryParams({ hostnames })}`)
 
     }
 
@@ -138,25 +138,25 @@ export class shodanClient {
 
         if (!checkers.isAValidIpsList(ips)) throw new Error("Error with /dns/reverse: the ips list " + ips + " isn't in a valid format.")
 
-        return await this.shodanHTTPClientObject.get(`dns/reverse?${this.buildQueryParams({ ips })}`)
+        return await this.shodanHTTPClientObject.get<T>(`dns/reverse?${this.buildQueryParams({ ips })}`)
 
     }
 
     public async getHTTPHeaders<T>(): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`tools/httpheaders?key=${this.secretShodanKey}`);
+        return await this.shodanHTTPClientObject.get<T>(`tools/httpheaders?key=${this.secretShodanKey}`);
 
     }
     
     public async getMyIP<T>(): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`tools/myip?key=${this.secretShodanKey}`);
+        return await this.shodanHTTPClientObject.get<T>(`tools/myip?key=${this.secretShodanKey}`);
 
     }
 
     public async getAPIPlanInformation<T>(): Promise<T> {
 
-        return await this.shodanHTTPClientObject.get(`api-info?key=${this.secretShodanKey}`);
+        return await this.shodanHTTPClientObject.get<T>(`api-info?key=${this.secretShodanKey}`);
 
     }
 

@@ -38,25 +38,25 @@ export class shodanHTTPClient {
 
     }
 
-    public get<T>(path: string, timeout?: number, headers?: HeadersInit): Promise<T> {
+    public get<T = unknown>(path: string, timeout?: number, headers?: HeadersInit): Promise<T> {
 
         return this.request<T>('GET', path, timeout ?? this.defaultTimeout, undefined, headers);
 
     }
 
-    public post<T>(path: string, body: unknown, timeout?: number, headers?: HeadersInit): Promise<T> {
+    public post<T = unknown>(path: string, body: unknown, timeout?: number, headers?: HeadersInit): Promise<T> {
 
         return this.request<T>('POST', path, timeout ?? this.defaultTimeout, body, headers);
 
     }
 
-    public put<T>(path: string, body: unknown, timeout?: number, headers?: HeadersInit): Promise<T> {
+    public put<T = unknown>(path: string, body: unknown, timeout?: number, headers?: HeadersInit): Promise<T> {
 
         return this.request<T>('PUT', path, timeout ?? this.defaultTimeout, body, headers);
 
     }
 
-    public delete<T>(path: string, timeout?: number, headers?: HeadersInit): Promise<T> {
+    public delete<T = unknown>(path: string, timeout?: number, headers?: HeadersInit): Promise<T> {
 
         return this.request<T>('DELETE', path, timeout ?? this.defaultTimeout, undefined, headers);
 
