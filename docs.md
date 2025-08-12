@@ -20,7 +20,7 @@ const shodanAPIClient = new shodanClient("API_Key", 8000 /* ms */);
 
 # Next, look at the supported methods:
 
-## [GET] `searchHostIP<T>(ip, { minify, history }?)` – Retrieve information about an IP address:
+## [GET] `async searchHostIP<T>(ip, { minify, history }?)` – Retrieve information about an IP address:
 
 This method is used to retrieve information about a specific IP address.
 
@@ -28,9 +28,11 @@ This method is used to retrieve information about a specific IP address.
 
 - `ip` [`string`]: the IP address you want to retrieve information about.
 
-- `minify` (optional) [`boolean`]: if `true`, returns a simplified version of the data. (default: false)
+- `options` (optional) [JSON] with:
 
-- `history` (optional) [`boolean`]: if `true`, includes historical data related to the IP. (default: false)
+  - `minify` [`boolean`]: if `true`, returns a simplified version of the data. (default: false)
+  
+  - `history` [`boolean`]: if `true`, includes historical data related to the IP. (default: false)
 
 ### Sample:
 ```js
@@ -45,7 +47,7 @@ console.log(searchHostIPMethodJSON);
 
 ### Be careful: the client throws an error if the IP address isn’t in a valid IPv4 or IPv6 format !
 
-## [GET] `searchHostCount<T>(query, { facets }?)` – Retrieve the count of services found:
+## [GET] `async searchHostCount<T>(query, { facets }?)` – Retrieve the count of services found:
 
 This method is used to **count** (and only count) the number of devices found using a query.  
 
@@ -53,7 +55,9 @@ This method is used to **count** (and only count) the number of devices found us
 
 - `query` [`string`]: a query string (e.g., `country:"US"`, `port:"22"`) used to search Shodan's banner database.
 
-- `facets` (optional) [`string`]: used to specify the result response.
+- `options` (optional) [JSON] with:
+
+  - `facets` [`string`]: used to specify the result response.
 
 ### Sample:
 ```js
@@ -66,7 +70,7 @@ const searchHostCountMethodJSON = await shodanAPIClient.searchHostCount('port:22
 console.log(searchHostCountMethodJSON);
 ```
 
-## [GET] `searchHostResearch<T>(query, { facets, page, minify }?)` – Search Shodan's host database:
+## [GET] `async searchHostResearch<T>(query, { facets, page, minify }?)` – Search Shodan's host database:
 
 This method allows you to search Shodan’s host (banner) database using a custom query, similar to how searches work on the Shodan website.
 
@@ -74,11 +78,13 @@ This method allows you to search Shodan’s host (banner) database using a custo
 
 - `query` [`string`]: a query string (e.g., `country:"US"`, `port:"22"`) used to search Shodan's banner database.
 
-- `facets` (optional) [`string`]: used to specify the result response.
+- `options` (optional) [JSON] with:
 
-- `page` (optional) [`number`]: the page number of the results to return. (default: 1)
-
-- `minify` (optional) [`boolean`]: if `true`, returns a simplified version of the data. (default: true)
+  - `facets` [`string`]: used to specify the result response.
+  
+  - `page` [`number`]: the page number of the results to return. (default: 1)
+  
+  - `minify` [`boolean`]: if `true`, returns a simplified version of the data. (default: true)
 
 ### Sample:
 ```js
@@ -91,7 +97,7 @@ const searchHostSearchMethodJSON = await shodanAPIClient.searchHostResearch("apa
 console.log(searchHostSearchMethodJSON);
 ```
 
-## [GET] `getSearchFacets<T>()` - Retrieve available search facets from Shodan's database:
+## [GET] `async getSearchFacets<T>()` - Retrieve available search facets from Shodan's database:
 
 This method helps you retrieve the available Shodan facets for searching.
 
@@ -107,7 +113,7 @@ const getFacetsMethodJSON = await shodanAPIClient.getSearchFacets();
 console.log(getFacetsMethodJSON)
 ```
 
-## [GET] `getSearchFilters<T>()` - Retrieve available search filters from Shodan's database:
+## [GET] `async getSearchFilters<T>()` - Retrieve available search filters from Shodan's database:
 
 This method helps you retrieve the available Shodan filters for searching.
 
@@ -123,7 +129,7 @@ const getFiltersMethodJSON = await shodanAPIClient.getSearchFilters();
 console.log(getFiltersMethodJSON)
 ```
 
-## [GET] `getSearchTokens<T>(query)` - Retrieve a lexed JSON of the filters you've written:
+## [GET] `async getSearchTokens<T>(query)` - Retrieve a lexed JSON of the filters you've written:
 
 This method helps you retrieve the parsed filters you've written.
 
@@ -140,7 +146,7 @@ const getTokensMethodJSON = await shodanAPIClient.getSearchTokens("Raspbian port
 console.log(getTokensMethodJSON)
 ```
 
-## [GET] `getPorts<T>()` – Retrieve available ports from Shodan's database:
+## [GET] `async getPorts<T>()` – Retrieve available ports from Shodan's database:
 
 This method retrieves the list of ports available in Shodan's database.
 
@@ -156,7 +162,7 @@ const getPortsMethodJSON = await shodanAPIClient.getPorts();
 console.log(getPortsMethodJSON);
 ```
 
-## [GET] `getProtocols<T>()` – Retrieve available protocols from Shodan's database:
+## [GET] `async getProtocols<T>()` – Retrieve available protocols from Shodan's database:
 
 This method retrieves the list of protocols available in Shodan's database.
 
@@ -172,7 +178,7 @@ const getProtocolsMethodJSON = await shodanAPIClient.getProtocols();
 console.log(getProtocolsMethodJSON);
 ```
 
-## [POST] `scanIps<T>(body)` – Submit a scan request to Shodan:
+## [POST] `async scanIps<T>(body)` – Submit a scan request to Shodan:
 
 This method allows you to submit a scan request to Shodan, specifying which IPs and services should be crawled.
 
@@ -217,7 +223,7 @@ console.log(scanIpsMethodJSON);
 
 ### Be careful: the client throws an error if IPs (CIDR) aren’t in a valid format !
 
-## [GET] `getScans<T>()` – Retrieve the list of current scans:
+## [GET] `async getScans<T>()` – Retrieve the list of current scans:
 
 This method retrieves the list of scans you are currently running.
 
@@ -233,7 +239,7 @@ const getListOfScansJSON = await shodanAPIClient.getScans();
 console.log(getListOfScansJSON);
 ```
 
-## [GET] `getScanById<T>(id)` – Retrieve a scan by ID:
+## [GET] `async getScanById<T>(id)` – Retrieve a scan by ID:
 
 This method retrieves the details of a specific scan using its ID.
 
@@ -250,17 +256,19 @@ const getScanFromIdJSON = await shodanAPIClient.getScanById("Scan ID");
 console.log(getScanFromIdJSON);
 ```
 
-## [GET] `getSavedSearchQueries<T>({ page, sort?, order? }?)` – Retrieve a list of saved search queries:
+## [GET] `async getSavedSearchQueries<T>({ page, sort?, order? }?)` – Retrieve a list of saved search queries:
 
 This method helps you retrieve the list of search queries that users have saved in Shodan's database.
 
 ### Parameters
 
-- `page` (optional) [`number`]: the page number of results to return. Each page contains 10 items. (default: 1)
+- `options` (optional) [JSON] with:
 
-- `sort` (optional) [`string`]: the field to sort the results by. Allowed values: `votes`, `timestamp`. This option is not required if other parameters are specified in the options object.
-
-- `order` (optional) [`string`]: the order in which results are returned. Allowed values: `asc`, `desc`. This option is not required if other parameters are specified in the options object.
+  - `page` [`number`]: the page number of results to return. Each page contains 10 items. (default: 1)
+  
+  - `sort` (optional) [`string`]: the field to sort the results by. Allowed values: `votes`, `timestamp`. This option is not required if other parameters are specified in the options object.
+  
+  - `order` (optional) [`string`]: the order in which results are returned. Allowed values: `asc`, `desc`. This option is not required if other parameters are specified in the options object.
 
 ### Sample
 
@@ -274,7 +282,7 @@ const getSavedSearchQueriesMethodJSON = await shodanAPIClient.getSavedSearchQuer
 console.log(getSavedSearchQueriesMethodJSON)
 ```
 
-## [GET] `getDirectoryWithSavedSearchQueries<T>(query, { page }?)` – Retrieve the directory of saved search queries:
+## [GET] `async getDirectoryWithSavedSearchQueries<T>(query, { page }?)` – Retrieve the directory of saved search queries:
 
 This method helps you search through the directory of search queries saved by users in Shodan's database.
 
@@ -282,7 +290,9 @@ This method helps you search through the directory of search queries saved by us
 
 - `query` [`string`]: a search query string (e.g., `country:"US"`, `port:"22"`) used to search Shodan's banner database.
 
-- `page` (optional) [`number`]: the page number of results to return. Each page contains 10 items.
+- `options` (optional) [JSON] with:
+
+  - `page` [`number`]: the page number of results to return. Each page contains 10 items.
 
 ### Sample
 
@@ -296,13 +306,15 @@ const directoryWithSavedSearchQueriesMethodJSON = await shodanAPIClient.getDirec
 console.log(directoryWithSavedSearchQueriesMethodJSON)
 ```
 
-## [GET] `getTagsOfSavedSearchQueries<T>({ size }?)` – Retrieve popular tags from saved search queries:
+## [GET] `async getTagsOfSavedSearchQueries<T>({ size }?)` – Retrieve popular tags from saved search queries:
 
 This method helps you retrieve the most frequently used tags in saved search queries.
 
 ### Parameters
 
-- `size` (optional) [`number`]: the number of tags to return. Defaults to 10 if not specified.
+- `options` (optional) [JSON] with:
+
+  - `size` [`number`]: the number of tags to return. Defaults to 10 if not specified.
 
 ### Sample
 
@@ -316,7 +328,7 @@ const getTagsFromSavedQueriesMethodJSON = await shodanAPIClient.getTagsOfSavedSe
 console.log(getTagsFromSavedQueriesMethodJSON);
 ```
 
-## [GET] `getAccountProfile<T>()` – Retrieve information about the account associated with your API key:
+## [GET] `async getAccountProfile<T>()` – Retrieve information about the account associated with your API key:
 
 This method allows you to retrieve details about the account linked to your API key.
 
@@ -334,7 +346,7 @@ const getAccountProfileMethodJSON = await shodanAPIClient.getAccountProfile();
 console.log(getAccountProfileMethodJSON)
 ```
 
-## [GET] `getAllDNSFromADomain<T>(domain, { history, type?, page }?)` – Retrieve subdomains and other DNS records for a domain:
+## [GET] `async getAllDNSFromADomain<T>(domain, { history, type?, page }?)` – Retrieve subdomains and other DNS records for a domain:
 
 This method retrieves subdomains and other DNS records associated with the specified domain.
 
@@ -344,11 +356,13 @@ This method retrieves subdomains and other DNS records associated with the speci
 
 - `domain` [`string`]: the domain name to look up (e.g., `google.com`).
 
-- `history` (optional) [`boolean`]: if `true`, includes historical DNS data. (default: false)
+- `options` (optional) [JSON] with:
 
-- `type` (optional) [`string`]: the DNS record type to filter results. Allowed values: `A`, `AAAA`, `CNAME`, `NS`, `SOA`, `MX`, `TXT`. This option is not required if other parameters are specified in the options object.
-
-- `page` (optional) [`number`]: the page number of results to retrieve. One page = 100 results. (default: 1)
+  - `history` [`boolean`]: if `true`, includes historical DNS data. (default: false)
+  
+  - `type` (optional) [`string`]: the DNS record type to filter results. Allowed values: `A`, `AAAA`, `CNAME`, `NS`, `SOA`, `MX`, `TXT`. This option is not required if other parameters are specified in the options object.
+  
+  - `page` [`number`]: the page number of results to retrieve. One page = 100 results. (default: 1)
 
 ### Sample
 
@@ -362,7 +376,7 @@ console.log(getAllDNSFromADomainMethodJSON)
 
 ### Be careful: the client throws an error if the domain isn’t in a valid format !
 
-## [GET] `DNSLookup<T>(hostnames)` – Retrieve the IP address(es) for a list of domains:
+## [GET] `async DNSLookup<T>(hostnames)` – Retrieve the IP address(es) for a list of domains:
 
 This method retrieves the IPv4 or IPv6 address(es) associated with one or more domain names.
 
@@ -382,7 +396,7 @@ console.log(DNSLookupMethodJSON)
 
 ### Be careful: the client throws an error if the list of domains (or a single domain) isn’t in a valid format. 
 
-## [GET] `reverseDNSLookup<T>(ips)` – Retrieve domain(s) associated with a list of IP addresses:
+## [GET] `async reverseDNSLookup<T>(ips)` – Retrieve domain(s) associated with a list of IP addresses:
 
 This method performs a reverse DNS lookup to retrieve domain names associated with a list of IP addresses.
 
@@ -402,7 +416,7 @@ console.log(reverseDNSLookupMethodJSON)
 
 ### Be careful: the client throws an error if the IP list (or a single IP) isn’t in a valid format.
 
-## [GET] `getHTTPHeaders<T>()` – Retrieve HTTP headers sent by the client to a web server:
+## [GET] `async getHTTPHeaders<T>()` – Retrieve HTTP headers sent by the client to a web server:
 
 This method allows you to retrieve the HTTP headers that the client sends to a web server.
 
@@ -420,7 +434,7 @@ const getHTTPHeadersMethodJSON = await shodanAPIClient.getHTTPHeaders();
 console.log(getHTTPHeadersMethodJSON);
 ```
 
-## [GET] `getMyIP<T>()` – Retrieve your public IP address:
+## [GET] `async getMyIP<T>()` – Retrieve your public IP address:
 
 This method allows you to retrieve your current public IP address.
 
@@ -438,7 +452,7 @@ const getMyIPMethodJSON = await shodanAPIClient.getMyIP();
 console.log(getMyIPMethodJSON)
 ```
 
-## [GET] `getAPIPlanInformation<T>()` – Retrieve details about your API plan:
+## [GET] `async getAPIPlanInformation<T>()` – Retrieve details about your API plan:
 
 This method allows you to retrieve information about your API plan, usage limits, and more.
 
