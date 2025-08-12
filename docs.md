@@ -474,7 +474,8 @@ Shodan API returns a JSON object explaining why the request failed:
   "error": "Reason why this error happened."
 }
 ```
-
 See [Shodan API](https://developer.shodan.io/api) for details about error handling.
+
+### For improved security and adherence to best practices, this client will throw an error that includes the HTTP status code, a description, and additional information about the error.
 
 **Make sure to follow best practices when using this client, such as wrapping each call in a `try/catch` block.**
