@@ -41,7 +41,7 @@ git clone https://github.com/Nde-Code/ShodanTS.git
 cd ShodanTS
 ```
 
-3. **Run the client:**
+3. **Run the client (make sure to insert your API key into the code beforehand):**
 
 ```bash
 deno run --allow-net=api.shodan.io example.ts
