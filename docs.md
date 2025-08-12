@@ -90,7 +90,7 @@ This method allows you to search Shodan’s host (banner) database using a custo
 ```js
 // With type and options:
 // Options typed via: searchOptionsType:
-const searchHostSearchMethod = await shodanAPIClient.searchHostResearch<yourType>("apache country:DE", { facets: "org", page: 3, minify: true });
+const searchHostSearchMethod = await shodanAPIClient.searchHostResearch<YourType>("apache country:DE", { facets: "org", page: 3, minify: true });
 
 // Or for JSON:
 const searchHostSearchMethodJSON = await shodanAPIClient.searchHostResearch("apache country:DE", { facets: "org", page: 3, minify: true});
@@ -106,7 +106,7 @@ None
 
 ### Sample:
 ```js
-const getFacetsMethod = await shodanAPIClient.getSearchFacets<yourType>();
+const getFacetsMethod = await shodanAPIClient.getSearchFacets<YourType>();
 
 // Or for JSON:
 const getFacetsMethodJSON = await shodanAPIClient.getSearchFacets();
@@ -122,7 +122,7 @@ None
 
 ### Sample:
 ```js
-const getFiltersMethod = await shodanAPIClient.getSearchFilters<yourType>();
+const getFiltersMethod = await shodanAPIClient.getSearchFilters<YourType>();
 
 // Or for JSON:
 const getFiltersMethodJSON = await shodanAPIClient.getSearchFilters();
@@ -139,7 +139,7 @@ This method helps you retrieve the parsed filters you've written.
 
 ### Sample:
 ```js
-const getTokensMethod = await shodanAPIClient.getSearchTokens<yourType>("Raspbian port:22")
+const getTokensMethod = await shodanAPIClient.getSearchTokens<YourType>("Raspbian port:22")
 
 // Or for JSON:
 const getTokensMethodJSON = await shodanAPIClient.getSearchTokens("Raspbian port:22")
@@ -155,7 +155,7 @@ None
 
 ### Sample:
 ```js
-const getPortsMethod = await shodanAPIClient.getPorts<yourType>();
+const getPortsMethod = await shodanAPIClient.getPorts<YourType>();
 
 // Or for JSON:
 const getPortsMethodJSON = await shodanAPIClient.getPorts();
@@ -171,7 +171,7 @@ None
 
 ### Sample:
 ```js
-const getProtocolsMethod = await shodanAPIClient.getProtocols<yourType>();
+const getProtocolsMethod = await shodanAPIClient.getProtocols<YourType>();
 
 // Or for JSON:
 const getProtocolsMethodJSON = await shodanAPIClient.getProtocols();
@@ -214,7 +214,7 @@ const bodyJSON: postShodanRequestBodyType = {
 
 };
 
-const scanIpsMethod = await shodanAPIClient.scanIps<yourType>(bodyJSON);
+const scanIpsMethod = await shodanAPIClient.scanIps<YourType>(bodyJSON);
 
 // Or for JSON:
 const scanIpsMethodJSON = await shodanAPIClient.scanIps(bodyJSON);
@@ -232,7 +232,7 @@ None
 
 ### Sample:
 ```js
-const getListOfScans = await shodanAPIClient.getScans<yourType>();
+const getListOfScans = await shodanAPIClient.getScans<YourType>();
 
 // Or for JSON:
 const getListOfScansJSON = await shodanAPIClient.getScans();
@@ -249,7 +249,7 @@ This method retrieves the details of a specific scan using its ID.
 
 ### Sample:
 ```js
-const getScanFromId = await shodanAPIClient.getScanById<yourType>("Scan ID");
+const getScanFromId = await shodanAPIClient.getScanById<YourType>("Scan ID");
 
 // Or for JSON:
 const getScanFromIdJSON = await shodanAPIClient.getScanById("Scan ID");
@@ -275,7 +275,7 @@ This method helps you retrieve the list of search queries that users have saved 
 ```ts
 // With type and options:
 // Options typed via: savedSearchQueryOptionsType:
-const getSavedSearchQueriesMethod = await shodanAPIClient.getSavedSearchQueries<yourType>({ page: 3, sort: "votes", order: "desc" }); 
+const getSavedSearchQueriesMethod = await shodanAPIClient.getSavedSearchQueries<YourType>({ page: 3, sort: "votes", order: "desc" }); 
 
 // Or for JSON:
 const getSavedSearchQueriesMethodJSON = await shodanAPIClient.getSavedSearchQueries({ page: 3, sort: "votes", order: "desc" });
@@ -299,7 +299,7 @@ This method helps you search through the directory of search queries saved by us
 ```ts
 // With type and options:
 // Options typed via: directoryWithSavedSearchQueriesOptionsType:
-const directoryWithSavedSearchQueriesMethod = await shodanAPIClient.getDirectoryWithSavedSearchQueries<yourType>("country:US", { page: 3 });
+const directoryWithSavedSearchQueriesMethod = await shodanAPIClient.getDirectoryWithSavedSearchQueries<YourType>("country:US", { page: 3 });
 
 // Or for JSON: 
 const directoryWithSavedSearchQueriesMethodJSON = await shodanAPIClient.getDirectoryWithSavedSearchQueries("country:US", { page: 3 });
@@ -321,7 +321,7 @@ This method helps you retrieve the most frequently used tags in saved search que
 ```ts
 // With type and options:
 // Options typed via: tagsOfSavedSearchQueriesOptionsType:
-const getTagsFromSavedQueriesMethod = await shodanAPIClient.getTagsOfSavedSearchQueries<yourType>({ size: 5 }); 
+const getTagsFromSavedQueriesMethod = await shodanAPIClient.getTagsOfSavedSearchQueries<YourType>({ size: 5 }); 
 
 // Or for JSON:
 const getTagsFromSavedQueriesMethodJSON = await shodanAPIClient.getTagsOfSavedSearchQueries({ size: 5 });
@@ -339,7 +339,7 @@ None.
 ### Sample
 
 ```ts
-const getAccountProfileMethod = await shodanAPIClient.getAccountProfile<yourType>();
+const getAccountProfileMethod = await shodanAPIClient.getAccountProfile<YourType>();
 
 // Or for JSON:
 const getAccountProfileMethodJSON = await shodanAPIClient.getAccountProfile();
@@ -367,7 +367,7 @@ This method retrieves subdomains and other DNS records associated with the speci
 ### Sample
 
 ```ts
-const getAllDNSFromADomainMethod = await shodanAPIClient.getAllDNSFromADomain<yourType>("google.com", { history: false, type: "CNAME", page: 1 });
+const getAllDNSFromADomainMethod = await shodanAPIClient.getAllDNSFromADomain<YourType>("google.com", { history: false, type: "CNAME", page: 1 });
 
 // Or for JSON:
 const getAllDNSFromADomainMethodJSON = await shodanAPIClient.getAllDNSFromADomain("google.com", { history: false, type: "CNAME", page: 1 });
@@ -387,7 +387,7 @@ This method retrieves the IPv4 or IPv6 address(es) associated with one or more d
 ### Sample
 
 ```ts
-const DNSLookupMethod = await shodanAPIClient.DNSLookup<yourType>("google.com,shodan.io");
+const DNSLookupMethod = await shodanAPIClient.DNSLookup<YourType>("google.com,shodan.io");
 
 // Or for JSON:
 const DNSLookupMethodJSON = await shodanAPIClient.DNSLookup("google.com,shodan.io");
@@ -407,7 +407,7 @@ This method performs a reverse DNS lookup to retrieve domain names associated wi
 ### Sample
 
 ```ts
-const reverseDNSLookupMethod = await shodanAPIClient.reverseDNSLookup<yourType>("8.8.8.8,1.1.1.1");
+const reverseDNSLookupMethod = await shodanAPIClient.reverseDNSLookup<YourType>("8.8.8.8,1.1.1.1");
 
 // Or for JSON:
 const reverseDNSLookupMethodJSON = await shodanAPIClient.reverseDNSLookup("8.8.8.8,1.1.1.1");
@@ -427,7 +427,7 @@ None.
 ### Sample
 
 ```ts
-const getHTTPHeadersMethod = await shodanAPIClient.getHTTPHeaders<yourType>();
+const getHTTPHeadersMethod = await shodanAPIClient.getHTTPHeaders<YourType>();
 
 // Or for JSON:
 const getHTTPHeadersMethodJSON = await shodanAPIClient.getHTTPHeaders();
@@ -445,7 +445,7 @@ None.
 ### Sample
 
 ```ts
-const getMyIPMethod = await shodanAPIClient.getMyIP<yourType>();
+const getMyIPMethod = await shodanAPIClient.getMyIP<YourType>();
 
 // Or for JSON:
 const getMyIPMethodJSON = await shodanAPIClient.getMyIP();
@@ -463,7 +463,7 @@ None.
 ### Sample
 
 ```ts
-const getAPIPlanInformationMethod = await shodanAPIClient.getAPIPlanInformation<yourType>();
+const getAPIPlanInformationMethod = await shodanAPIClient.getAPIPlanInformation<YourType>();
 
 // Or for JSON:
 const getAPIPlanInformationMethodJSON = await shodanAPIClient.getAPIPlanInformation();
