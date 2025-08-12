@@ -468,7 +468,15 @@ All methods return a **Promise** resolving to a JSON response typed as the gener
 
 > Make sure to use `await` when calling these methods to properly handle the returned data.
 
-## Error Handling
+## Error Handling:
+
+Shodan API returns a JSON object explaining why the request failed:
+
+```json
+{
+  "error": "Reason why this error happened."
+}
+```
 
 See [Shodan API](https://developer.shodan.io/api) for details about error handling.
 
