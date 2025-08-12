@@ -355,9 +355,6 @@ This method retrieves subdomains and other DNS records associated with the speci
 ```ts
 const getAllDNSFromADomainMethod = await shodanClientApi.getAllDNSFromADomain<yourType>("google.com", { history: false, type: "CNAME", page: 1 });
 
-/* Or, if no options are needed:
-const getAllDNSFromADomainMethod = await shodanClientApi.getAllDNSFromADomain<yourType>("google.com"); */
-
 // Or for JSON:
 const getAllDNSFromADomainMethodJSON = await shodanClientApi.getAllDNSFromADomain("google.com", { history: false, type: "CNAME", page: 1 });
 console.log(getAllDNSFromADomainMethodJSON)
