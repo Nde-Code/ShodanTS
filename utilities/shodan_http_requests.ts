@@ -32,6 +32,8 @@ export class shodanHTTPClient {
 
         });
 
+        if (!response.ok) throw new Error(`HTTP error ${response.status}: ${response.statusText} on ${this.buildUrl(path)}`);
+
         clearTimeout(abortControllerId);
 
         return response.json() as Promise<T>;

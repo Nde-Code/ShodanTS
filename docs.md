@@ -20,68 +20,74 @@ const shodanAPIClient = new shodanClient("API_Key", 8000 /* ms */);
 
 # Next, look at the supported methods:
 
-## [GET] `searchHostIP<T>(ip, minify?, history?)` – Retrieve information about an IP address:
+## [GET] `searchHostIP<T>(ip, { minify, history }?)` – Retrieve information about an IP address:
 
 This method is used to retrieve information about a specific IP address.
 
 ### Parameters:
 
 - `ip` [`string`]: the IP address you want to retrieve information about.
+
 - `minify` (optional) [`boolean`]: if `true`, returns a simplified version of the data. (default: false)
+
 - `history` (optional) [`boolean`]: if `true`, includes historical data related to the IP. (default: false)
 
 ### Sample:
 ```js
-const searchHostIPMethod = await shodanAPIClient.searchHostIP<yourType>("8.8.8.8", true, false);
+// With type and options:
+// Options typed via: ipSearchOptionsType
+const searchHostIPMethod = await shodanAPIClient.searchHostIP<YourType>("8.8.8.8", { minify: true, history: false });
 
-// or const searchHostIPMethod = await shodanAPIClient.searchHostIP<yourType>("8.8.8.8"); if no options required.
-
-// or for JSON: 
-const searchHostIPMethodJSON = await shodanAPIClient.searchHostIP("8.8.8.8", true, false);
+// Quick call without options:
+const searchHostIPMethodJSON = await shodanAPIClient.searchHostIP("8.8.8.8", { minify: true, history: false });
 console.log(searchHostIPMethodJSON);
 ```
 
 ### Be careful: the client throws an error if the IP address isn’t in a valid IPv4 or IPv6 format !
 
-## [GET] `searchHostCount<T>(query, facets?)` – Retrieve the count of services found:
+## [GET] `searchHostCount<T>(query, { facets }?)` – Retrieve the count of services found:
 
 This method is used to **count** (and only count) the number of devices found using a query.  
 
 ### Parameters:
 
 - `query` [`string`]: a query string (e.g., `country:"US"`, `port:"22"`) used to search Shodan's banner database.
+
 - `facets` (optional) [`string`]: used to specify the result response.
 
 ### Sample:
 ```js
-const searchHostCountMethod = await shodanAPIClient.searchHostCount<yourType>('port:22', 'country:2')
-
-// or const searchHostCountMethod = await shodanAPIClient.searchHostCount<yourType>('port:22'); if no options required.
+// With type and options:
+// Options typed via: countSearchOptionsType
+const searchHostCountMethod = await shodanAPIClient.searchHostCount<YourType>('port:22', { facets: 'country:2' })
 
 // Or for JSON:
-const searchHostCountMethodJSON = await shodanAPIClient.searchHostCount('port:22', 'country:2')
+const searchHostCountMethodJSON = await shodanAPIClient.searchHostCount('port:22', { facets: 'country:2' })
 console.log(searchHostCountMethodJSON);
 ```
 
-## [GET] `searchHostResearch<T>(query, facets?, page?, minify?)` – Search Shodan's host database:
+## [GET] `searchHostResearch<T>(query, { facets, page, minify }?)` – Search Shodan's host database:
 
 This method allows you to search Shodan’s host (banner) database using a custom query, similar to how searches work on the Shodan website.
 
 ### Parameters:
 
 - `query` [`string`]: a query string (e.g., `country:"US"`, `port:"22"`) used to search Shodan's banner database.
+
 - `facets` (optional) [`string`]: used to specify the result response.
+
 - `page` (optional) [`number`]: the page number of the results to return. (default: 1)
+
 - `minify` (optional) [`boolean`]: if `true`, returns a simplified version of the data. (default: true)
 
 ### Sample:
 ```js
-const searchHostSearchMethod = await shodanAPIClient.searchHostResearch<yourType>("apache country:DE", "org", 3, true);
-
-// or const searchHostSearchMethod = await shodanAPIClient.searchHostResearch<yourType>("apache country:US"); if no options required.
+// With type and options:
+// Options typed via: searchOptionsType:
+const searchHostSearchMethod = await shodanAPIClient.searchHostResearch<yourType>("apache country:DE", { facets: "org", page: 3, minify: true });
 
 // Or for JSON:
-const searchHostSearchMethodJSON = await shodanAPIClient.searchHostResearch("apache country:DE", "org", 3, true);
+const searchHostSearchMethodJSON = await shodanAPIClient.searchHostResearch("apache country:DE", { facets: "org", page: 3, minify: true});
 console.log(searchHostSearchMethodJSON);
 ```
 
@@ -173,17 +179,14 @@ This method allows you to submit a scan request to Shodan, specifying which IPs 
 ### Parameters:
 
 - `body` [JSON] with:
+
   - `ips` [`Record<string, [number, string][]>`]: an object where each key is an IP address (or CIDR range) and the value is a list of `[port, protocol]` tuples representing the services to be scanned.
 
 ### Sample:
 ```ts
-type ShodanRequestBody = {
+import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v2.0.0/mod.ts";
 
-  ips: Record<string, [number, string][]>;
-
-};
-
-const bodyJSON: ShodanRequestBody = {
+const bodyJSON: postShodanRequestBodyType = {
 
   ips: {
 
@@ -247,50 +250,53 @@ const getScanFromIdJSON = await shodanAPIClient.getScanById("Scan ID");
 console.log(getScanFromIdJSON);
 ```
 
-## [GET] `getSavedSearchQueries<T>(page?, sort?, order?)` – Retrieve a list of saved search queries:
+## [GET] `getSavedSearchQueries<T>({ page, sort?, order? }?)` – Retrieve a list of saved search queries:
 
 This method helps you retrieve the list of search queries that users have saved in Shodan's database.
 
 ### Parameters
 
-- `page` (optional) [`number`]: the page number of results to return. Each page contains 10 items.
-- `sort` (optional) [`string`]: the field to sort the results by. Allowed values: `votes`, `timestamp`.
-- `order` (optional) [`string`]: the order in which results are returned. Allowed values: `asc`, `desc`.
+- `page` (optional) [`number`]: the page number of results to return. Each page contains 10 items. (default: 1)
+
+- `sort` (optional) [`string`]: the field to sort the results by. Allowed values: `votes`, `timestamp`. This option is not required if other parameters are specified in the options object.
+
+- `order` (optional) [`string`]: the order in which results are returned. Allowed values: `asc`, `desc`. This option is not required if other parameters are specified in the options object.
 
 ### Sample
 
 ```ts
-const getSavedSearchQueriesMethod = await shodanClientApi.getSavedSearchQueries<yourType>();
-
-// const getSavedSearchQueriesMethod = await shodanClientApi.getSavedSearchQueries<yourType>(3, "votes", "desc"); if options needed.
+// With type and options:
+// Options typed via: savedSearchQueryOptionsType:
+const getSavedSearchQueriesMethod = await shodanClientApi.getSavedSearchQueries<yourType>({ page: 3, sort: "votes", order: "desc" }); 
 
 // Or for JSON:
-const getSavedSearchQueriesMethodJSON = await shodanClientApi.getSavedSearchQueries();
+const getSavedSearchQueriesMethodJSON = await shodanClientApi.getSavedSearchQueries({ page: 3, sort: "votes", order: "desc" });
 console.log(getSavedSearchQueriesMethodJSON)
 ```
 
-## [GET] `getDirectoryWithSavedSearchQueries<T>(query, page?)` – Retrieve the directory of saved search queries:
+## [GET] `getDirectoryWithSavedSearchQueries<T>(query, { page }?)` – Retrieve the directory of saved search queries:
 
 This method helps you search through the directory of search queries saved by users in Shodan's database.
 
 ### Parameters
 
 - `query` [`string`]: a search query string (e.g., `country:"US"`, `port:"22"`) used to search Shodan's banner database.
+
 - `page` (optional) [`number`]: the page number of results to return. Each page contains 10 items.
 
 ### Sample
 
 ```ts
-const directoryWithSavedSearchQueriesMethod = await shodanClientApi.getDirectoryWithSavedSearchQueries<yourType>("country:US");
-
-// Or const directoryWithSavedSearchQueriesMethod = await shodanClientApi.getDirectoryWithSavedSearchQueries<yourType>("country:US", 3); if you need more pages.
+// With type and options:
+// Options typed via: directoryWithSavedSearchQueriesOptionsType:
+const directoryWithSavedSearchQueriesMethod = await shodanClientApi.getDirectoryWithSavedSearchQueries<yourType>("country:US", { page: 3 });
 
 // Or for JSON: 
-const directoryWithSavedSearchQueriesMethodJSON = await shodanClientApi.getDirectoryWithSavedSearchQueries("country:US");
+const directoryWithSavedSearchQueriesMethodJSON = await shodanClientApi.getDirectoryWithSavedSearchQueries("country:US", { page: 3 });
 console.log(directoryWithSavedSearchQueriesMethodJSON)
 ```
 
-## [GET] `getTagsOfSavedSearchQueries<T>(size?)` – Retrieve popular tags from saved search queries:
+## [GET] `getTagsOfSavedSearchQueries<T>({ size }?)` – Retrieve popular tags from saved search queries:
 
 This method helps you retrieve the most frequently used tags in saved search queries.
 
@@ -301,12 +307,12 @@ This method helps you retrieve the most frequently used tags in saved search que
 ### Sample
 
 ```ts
-const getTagsFromSavedQueriesMethod = await shodanClientApi.getTagsOfSavedSearchQueries<yourType>();
-
-// Or const getTagsFromSavedQueriesMethod = await shodanClientApi.getTagsOfSavedSearchQueries<yourType>(5); if you need a size.
+// With type and options:
+// Options typed via: tagsOfSavedSearchQueriesOptionsType:
+const getTagsFromSavedQueriesMethod = await shodanClientApi.getTagsOfSavedSearchQueries<yourType>({ size: 5 }); 
 
 // Or for JSON:
-const getTagsFromSavedQueriesMethodJSON = await shodanClientApi.getTagsOfSavedSearchQueries();
+const getTagsFromSavedQueriesMethodJSON = await shodanClientApi.getTagsOfSavedSearchQueries({ size: 5 });
 console.log(getTagsFromSavedQueriesMethodJSON);
 ```
 
@@ -328,8 +334,7 @@ const getAccountProfileMethodJSON = await shodanClientApi.getAccountProfile();
 console.log(getAccountProfileMethodJSON)
 ```
 
-
-## [GET] `getAllDNSFromADomain<T>(domain, history?, type?, page?)` – Retrieve subdomains and other DNS records for a domain:
+## [GET] `getAllDNSFromADomain<T>(domain, { history, type?, page }?)` – Retrieve subdomains and other DNS records for a domain:
 
 This method retrieves subdomains and other DNS records associated with the specified domain.
 
@@ -338,20 +343,23 @@ This method retrieves subdomains and other DNS records associated with the speci
 ### Parameters
 
 - `domain` [`string`]: the domain name to look up (e.g., `google.com`).
-- `history` (optional) [`boolean`]: if `true`, includes historical DNS data. Default is `false`.
-- `type` (optional) [`string`]: the DNS record type to filter results. Allowed values: `A`, `AAAA`, `CNAME`, `NS`, `SOA`, `MX`, `TXT`.
-- `page` (optional) [`number`]: the page number of results to retrieve. One page = 100 results. Defaults to `1` if not specified.
+
+- `history` (optional) [`boolean`]: if `true`, includes historical DNS data. (default: false)
+
+- `type` (optional) [`string`]: the DNS record type to filter results. Allowed values: `A`, `AAAA`, `CNAME`, `NS`, `SOA`, `MX`, `TXT`. This option is not required if other parameters are specified in the options object.
+
+- `page` (optional) [`number`]: the page number of results to retrieve. One page = 100 results. (default: 1)
 
 ### Sample
 
 ```ts
-const getAllDNSFromADomainMethod = await shodanClientApi.getAllDNSFromADomain<yourType>("google.com", false, "CNAME", 1);
+const getAllDNSFromADomainMethod = await shodanClientApi.getAllDNSFromADomain<yourType>("google.com", { history: false, type: "CNAME", page: 1 });
 
 /* Or, if no options are needed:
 const getAllDNSFromADomainMethod = await shodanClientApi.getAllDNSFromADomain<yourType>("google.com"); */
 
 // Or for JSON:
-const getAllDNSFromADomainMethodJSON = await shodanClientApi.getAllDNSFromADomain("google.com", false, "CNAME", 1);
+const getAllDNSFromADomainMethodJSON = await shodanClientApi.getAllDNSFromADomain("google.com", { history: false, type: "CNAME", page: 1 });
 console.log(getAllDNSFromADomainMethodJSON)
 ```
 
@@ -467,7 +475,7 @@ It returns a JSON object with an explanation of why the error occurred.
 ### Sample:
 ```json
 {
-    "error": "Message explaining why the error happened."
+  "error": "Message explaining why the error happened."
 }
 ```
  
