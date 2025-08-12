@@ -11,7 +11,25 @@ import { checkers } from "../utilities/checkers.ts";
 
 import { QueryParamsBuilder } from "../utilities/json_options_URL.ts";
 
-import * as Types from "../types/types.ts";
+import type {
+
+    ipSearchOptionsType,
+
+    countSearchOptionsType,
+
+    searchOptionsType,
+
+    postShodanRequestBodyType,
+
+    savedSearchQueryOptionsType,
+
+    directoryWithSavedSearchQueriesOptionsType,
+
+    tagsOfSavedSearchQueriesOptionsType,
+
+    allDNSFromADomainOptionsType
+    
+} from "../types/types.ts";
 
 export class shodanClient {
 
@@ -35,7 +53,7 @@ export class shodanClient {
     
     }
 
-    public async searchHostIP<T = unknown>(ip: string, options?: Types.ipSearchOptionsType): Promise<T> {
+    public async searchHostIP<T = unknown>(ip: string, options?: ipSearchOptionsType): Promise<T> {
 
         if (!checkers.isAnIpV4(ip) && !checkers.isAnIpV6(ip)) throw new Error(`Error with /shodan/host/{ip}: the ip (${ip}) is not a valid ip address.`)
         
@@ -43,13 +61,13 @@ export class shodanClient {
 
     }
 
-    public async searchHostCount<T = unknown>(query: string, options?: Types.countSearchOptionsType): Promise<T> {
+    public async searchHostCount<T = unknown>(query: string, options?: countSearchOptionsType): Promise<T> {
                 
         return await this.shodanHTTPClientObject.get<T>(`shodan/host/count?${this.buildQueryParams({ query, ...options })}`);
 
     }
 
-    public async searchHostResearch<T = unknown>(query: string, options?: Types.searchOptionsType): Promise<T> {
+    public async searchHostResearch<T = unknown>(query: string, options?: searchOptionsType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/host/search?${this.buildQueryParams({ query, ...options })}`);
 
@@ -85,7 +103,7 @@ export class shodanClient {
 
     }
 
-    public async scanIps<T = unknown>(body: Types.postShodanRequestBodyType): Promise<T> {
+    public async scanIps<T = unknown>(body: postShodanRequestBodyType): Promise<T> {
 
         for (const ip of Object.keys(body.ips)) {
 
@@ -109,19 +127,19 @@ export class shodanClient {
         
     }
 
-    public async getSavedSearchQueries<T = unknown>(options?: Types.savedSearchQueryOptionsType): Promise<T> {
+    public async getSavedSearchQueries<T = unknown>(options?: savedSearchQueryOptionsType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/query?${this.buildQueryParams(options)}`)
 
     }
 
-    public async getDirectoryWithSavedSearchQueries<T = unknown>(query: string, options?: Types.directoryWithSavedSearchQueriesOptionsType): Promise<T> {
+    public async getDirectoryWithSavedSearchQueries<T = unknown>(query: string, options?: directoryWithSavedSearchQueriesOptionsType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/query/search?${this.buildQueryParams({ query, ...options })}`);
 
     }
 
-    public async getTagsOfSavedSearchQueries<T = unknown>(options?: Types.tagsOfSavedSearchQueriesOptionsType): Promise<T> {
+    public async getTagsOfSavedSearchQueries<T = unknown>(options?: tagsOfSavedSearchQueriesOptionsType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/query/tags?${this.buildQueryParams(options)}`);
 
@@ -133,7 +151,7 @@ export class shodanClient {
 
     }
 
-    public async getAllDNSFromADomain<T = unknown>(domain: string, options?: Types.allDNSFromADomainOptionsType): Promise<T> {
+    public async getAllDNSFromADomain<T = unknown>(domain: string, options?: allDNSFromADomainOptionsType): Promise<T> {
 
         if(!checkers.isAValidDomain(domain)) throw new Error(`Error with dns/domain/{domain}: the domain (${domain}) isn't in a valid format.`)
 
