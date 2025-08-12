@@ -79,6 +79,12 @@ And run your file with the following command:
 deno run --allow-net=api.shodan.io your_file.ts
 ```
 
+Make sure you have correctly configured and installed the Deno extension for Visual Studio Code if you're using this client from a URL. 
+
+For guidance, see the [Deno & Visual Studio Code documentation](https://docs.deno.com/runtime/reference/vscode/)
+
+You can also use my `settings.json` file located at: [`.vscode/settings.json`](.vscode/settings.json)
+
 ## 📚 Documentation:
 
 For full usage examples, configuration details, and API command references, check out the [docs.md](./docs.md) file in this repo.
