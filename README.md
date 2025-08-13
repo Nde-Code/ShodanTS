@@ -1,6 +1,6 @@
 # 🔍 ShodanTS:
 
-A lightweight and modern [Shodan API](https://www.shodan.io/) client written in TypeScript, powered by the [Deno runtime](https://deno.land/). 
+A lightweight and modern [Shodan](https://www.shodan.io/)  API client written in TypeScript, powered by the [Deno runtime](https://deno.land/). 
 
 This client is fully built based on the Shodan API documentation: https://developer.shodan.io/api
 
