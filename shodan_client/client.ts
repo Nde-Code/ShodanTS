@@ -103,7 +103,7 @@ export class shodanClient {
 
     }
 
-    public async scanIps<T = unknown>(body: postShodanRequestBodyType): Promise<T> {
+    public async submitIPScanRequest<T = unknown>(body: postShodanRequestBodyType): Promise<T> {
 
         for (const ip of Object.keys(body.ips)) {
 
