@@ -70,7 +70,7 @@ const searchHostCountMethodJSON = await shodanAPIClient.searchHostCount('port:22
 console.log(searchHostCountMethodJSON);
 ```
 
-## [GET] `async searchHostResearch<T>(query, { facets, page, minify }?)` – Search Shodan's host database:
+## [GET] `async searchHostQuery<T>(query, { facets, page, minify }?)` – Search Shodan's host database:
 
 This method allows you to search Shodan’s host (banner) database using a custom query, similar to how searches work on the Shodan website.
 
@@ -90,11 +90,11 @@ This method allows you to search Shodan’s host (banner) database using a custo
 ```js
 // With type and options:
 // Options typed via: searchOptionsType:
-const searchHostSearchMethod = await shodanAPIClient.searchHostResearch<YourType>("apache country:DE", { facets: "org", page: 3, minify: true });
+const searchHostQueryMethod = await shodanAPIClient.searchHostQuery<YourType>("apache country:DE", { facets: "org", page: 3, minify: true });
 
 // Or for JSON:
-const searchHostSearchMethodJSON = await shodanAPIClient.searchHostResearch("apache country:DE", { facets: "org", page: 3, minify: true});
-console.log(searchHostSearchMethodJSON);
+const searchHostQueryMethodJSON = await shodanAPIClient.searchHostQuery("apache country:DE", { facets: "org", page: 3, minify: true});
+console.log(searchHostQueryMethodJSON);
 ```
 
 ## [GET] `async getSearchFacets<T>()` - Retrieve available search facets from Shodan's database:
@@ -258,7 +258,7 @@ console.log(getScanFromIdJSON);
 
 ## [GET] `async getSavedSearchQueries<T>({ page, sort?, order? }?)` – Retrieve a list of saved search queries:
 
-This method helps you retrieve the list of search queries that users have saved in Shodan's database.
+This method returns a list of search queries that have been saved by users in the Shodan directory.
 
 ### Parameters
 
@@ -306,9 +306,9 @@ const directoryWithSavedSearchQueriesMethodJSON = await shodanAPIClient.getDirec
 console.log(directoryWithSavedSearchQueriesMethodJSON)
 ```
 
-## [GET] `async getTagsOfSavedSearchQueries<T>({ size }?)` – Retrieve popular tags from saved search queries:
+## [GET] `async getSavedQueryTags<T>({ size }?)` – Retrieve popular tags from saved search queries:
 
-This method helps you retrieve the most frequently used tags in saved search queries.
+This method allows you to search the collection of user-saved queries in Shodan.
 
 ### Parameters
 
@@ -321,11 +321,11 @@ This method helps you retrieve the most frequently used tags in saved search que
 ```ts
 // With type and options:
 // Options typed via: tagsOfSavedSearchQueriesOptionsType:
-const getTagsFromSavedQueriesMethod = await shodanAPIClient.getTagsOfSavedSearchQueries<YourType>({ size: 5 }); 
+const getSavedQueryTagsMethod = await shodanAPIClient.getSavedQueryTags<YourType>({ size: 5 }); 
 
 // Or for JSON:
-const getTagsFromSavedQueriesMethodJSON = await shodanAPIClient.getTagsOfSavedSearchQueries({ size: 5 });
-console.log(getTagsFromSavedQueriesMethodJSON);
+const getSavedQueryTagsMethodJSON = await shodanAPIClient.getSavedQueryTags({ size: 5 });
+console.log(getSavedQueryTagsMethodJSON);
 ```
 
 ## [GET] `async getAccountProfile<T>()` – Retrieve information about the account associated with your API key:
@@ -346,7 +346,7 @@ const getAccountProfileMethodJSON = await shodanAPIClient.getAccountProfile();
 console.log(getAccountProfileMethodJSON)
 ```
 
-## [GET] `async getAllDNSFromADomain<T>(domain, { history, type?, page }?)` – Retrieve subdomains and other DNS records for a domain:
+## [GET] `async getDNSRecords<T>(domain, { history, type?, page }?)` – Retrieve subdomains and other DNS records for a domain:
 
 This method retrieves subdomains and other DNS records associated with the specified domain.
 
@@ -367,11 +367,11 @@ This method retrieves subdomains and other DNS records associated with the speci
 ### Sample
 
 ```ts
-const getAllDNSFromADomainMethod = await shodanAPIClient.getAllDNSFromADomain<YourType>("google.com", { history: false, type: "CNAME", page: 1 });
+const getDNSRecordsMethod = await shodanAPIClient.getDNSRecords<YourType>("google.com", { history: false, type: "CNAME", page: 1 });
 
 // Or for JSON:
-const getAllDNSFromADomainMethodJSON = await shodanAPIClient.getAllDNSFromADomain("google.com", { history: false, type: "CNAME", page: 1 });
-console.log(getAllDNSFromADomainMethodJSON)
+const getDNSRecordsMethodJSON = await shodanAPIClient.getDNSRecords("google.com", { history: false, type: "CNAME", page: 1 });
+console.log(getDNSRecordsMethodJSON)
 ```
 
 ### Be careful: the client throws an error if the domain isn’t in a valid format !

@@ -67,7 +67,7 @@ export class shodanClient {
 
     }
 
-    public async searchHostResearch<T = unknown>(query: string, options?: searchOptionsType): Promise<T> {
+    public async searchHostQuery<T = unknown>(query: string, options?: searchOptionsType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/host/search?${this.buildQueryParams({ query, ...options })}`);
 
@@ -139,7 +139,7 @@ export class shodanClient {
 
     }
 
-    public async getTagsOfSavedSearchQueries<T = unknown>(options?: tagsOfSavedSearchQueriesOptionsType): Promise<T> {
+    public async getSavedQueryTags<T = unknown>(options?: tagsOfSavedSearchQueriesOptionsType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/query/tags?${this.buildQueryParams(options)}`);
 
@@ -151,7 +151,7 @@ export class shodanClient {
 
     }
 
-    public async getAllDNSFromADomain<T = unknown>(domain: string, options?: allDNSFromADomainOptionsType): Promise<T> {
+    public async getDNSRecords<T = unknown>(domain: string, options?: allDNSFromADomainOptionsType): Promise<T> {
 
         if(!checkers.isAValidDomain(domain)) throw new Error(`Error with dns/domain/{domain}: the domain (${domain}) isn't in a valid format.`)
 
