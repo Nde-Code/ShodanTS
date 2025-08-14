@@ -258,7 +258,7 @@ console.log(getScanFromIdJSON);
 
 ## [GET] `async getSavedSearchQueries<T>({ page, sort?, order? }?)` – Retrieve a list of saved search queries:
 
-This method returns a list of search queries that have been saved by users in the Shodan directory.
+This method returns a list of search queries that have been saved by users on Shodan.
 
 ### Parameters
 
