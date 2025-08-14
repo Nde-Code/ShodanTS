@@ -178,7 +178,7 @@ const getProtocolsMethodJSON = await shodanAPIClient.getProtocols();
 console.log(getProtocolsMethodJSON);
 ```
 
-## [POST] `async submitIPScanRequest<T>(body)` – Submit a scan request to Shodan:
+## [POST] `async submitScanRequest<T>(body)` – Submit a scan request to Shodan:
 
 This method allows you to submit a scan request to Shodan, specifying which IPs and services should be crawled.
 
@@ -190,7 +190,7 @@ This method allows you to submit a scan request to Shodan, specifying which IPs 
 
 ### Sample:
 ```ts
-import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.1/mod.ts";
+import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.2/mod.ts";
 
 const bodyJSON: postShodanRequestBodyType = {
 
@@ -214,11 +214,11 @@ const bodyJSON: postShodanRequestBodyType = {
 
 };
 
-const submitIPScanRequestMethod = await shodanAPIClient.submitIPScanRequest<YourType>(bodyJSON);
+const submitScanRequestMethod = await shodanAPIClient.submitScanRequest<YourType>(bodyJSON);
 
 // Or for JSON:
-const submitIPScanRequestMethodJSON = await shodanAPIClient.submitIPScanRequest(bodyJSON);
-console.log(submitIPScanRequestMethodJSON);
+const submitScanRequestMethodJSON = await shodanAPIClient.submitScanRequest(bodyJSON);
+console.log(submitScanRequestMethodJSON);
 ```
 
 ### Be careful: the client throws an error if IPs (CIDR) aren’t in a valid format !
