@@ -474,10 +474,9 @@ console.log(getAPIPlanInformationMethodJSON)
 
 All methods return a **Promise** resolving to a JSON response typed as the generic `T` or `unknown`, except for `getMyIP<T>()`, which returns plain text with your IP address.
 
+> I've built something easy and lightweight to use. I haven’t created a system with fixed/strictly typed responses, so you’re free to make your own and use only what you need. I prefer keeping it generic rather than enforcing a specific type.
 
-> This client doesn’t implement specific types for each response to avoid conflicts with the varying Shodan API formats, but it now supports generics, allowing you to retrieve data as `unknown` or as a custom type based on your needs.
-
-> Make sure to use `await` when calling these methods to properly handle the returned data.
+Make sure to use `await` when calling these methods to properly handle the returned data.
 
 ## Error Handling:
 
