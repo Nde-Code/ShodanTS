@@ -20,7 +20,7 @@ const shodanAPIClient = new shodanClient("API_Key", 8000 /* ms */);
 
 # Next, look at the supported methods:
 
-## [GET] `async searchHostIP<T>(ip, { minify, history }?)` – Retrieve information about an IP address:
+## [GET] `async searchHostWithIP<T>(ip, { minify, history }?)` – Retrieve information about an IP address:
 
 This method is used to retrieve information about a specific IP address.
 
@@ -38,16 +38,16 @@ This method is used to retrieve information about a specific IP address.
 ```js
 // With type and options:
 // Options typed via: ipSearchOptionsType
-const searchHostIPMethod = await shodanAPIClient.searchHostIP<YourType>("8.8.8.8", { minify: true, history: false });
+const searchHostWithIPMethod = await shodanAPIClient.searchHostWithIP<YourType>("8.8.8.8", { minify: true, history: false });
 
 // Quick call without options:
-const searchHostIPMethodJSON = await shodanAPIClient.searchHostIP("8.8.8.8", { minify: true, history: false });
-console.log(searchHostIPMethodJSON);
+const searchHostWithIPMethodJSON = await shodanAPIClient.searchHostWithIP("8.8.8.8", { minify: true, history: false });
+console.log(searchHostWithIPMethodJSON);
 ```
 
 ### Be careful: the client throws an error if the IP address isn’t in a valid IPv4 or IPv6 format !
 
-## [GET] `async searchHostCount<T>(query, { facets }?)` – Retrieve the count of services found:
+## [GET] `async countHostsWithQuery<T>(query, { facets }?)` – Retrieve the count of services found:
 
 This method is used to **count** (and only count) the number of devices found using a query.  
 
@@ -63,14 +63,14 @@ This method is used to **count** (and only count) the number of devices found us
 ```js
 // With type and options:
 // Options typed via: countSearchOptionsType
-const searchHostCountMethod = await shodanAPIClient.searchHostCount<YourType>('port:22', { facets: 'country:2' })
+const countHostsWithQueryMethod = await shodanAPIClient.countHostsWithQuery<YourType>('port:22', { facets: 'country:2' })
 
 // Or for JSON:
-const searchHostCountMethodJSON = await shodanAPIClient.searchHostCount('port:22', { facets: 'country:2' })
-console.log(searchHostCountMethodJSON);
+const countHostsWithQueryMethodJSON = await shodanAPIClient.countHostsWithQuery('port:22', { facets: 'country:2' })
+console.log(countHostsWithQueryMethodJSON);
 ```
 
-## [GET] `async searchHostQuery<T>(query, { facets, page, minify }?)` – Search Shodan's host database:
+## [GET] `async searchHostWithQuery<T>(query, { facets, page, minify }?)` – Search Shodan's host database:
 
 This method allows you to search Shodan’s host (banner) database using a custom query, similar to how searches work on the Shodan website.
 
@@ -90,11 +90,11 @@ This method allows you to search Shodan’s host (banner) database using a custo
 ```js
 // With type and options:
 // Options typed via: searchOptionsType:
-const searchHostQueryMethod = await shodanAPIClient.searchHostQuery<YourType>("apache country:DE", { facets: "org", page: 3, minify: true });
+const searchHostWithQueryMethod = await shodanAPIClient.searchHostWithQuery<YourType>("apache country:DE", { facets: "org", page: 3, minify: true });
 
 // Or for JSON:
-const searchHostQueryMethodJSON = await shodanAPIClient.searchHostQuery("apache country:DE", { facets: "org", page: 3, minify: true});
-console.log(searchHostQueryMethodJSON);
+const searchHostWithQueryMethodJSON = await shodanAPIClient.searchHostWithQuery("apache country:DE", { facets: "org", page: 3, minify: true});
+console.log(searchHostWithQueryMethodJSON);
 ```
 
 ## [GET] `async getSearchFacets<T>()` - Retrieve available search facets from Shodan's database:
@@ -190,7 +190,7 @@ This method allows you to submit a scan request to Shodan, specifying which IPs 
 
 ### Sample:
 ```ts
-import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.3/mod.ts";
+import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.4/mod.ts";
 
 const bodyJSON: postShodanRequestBodyType = {
 

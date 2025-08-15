@@ -53,7 +53,7 @@ export class shodanClient {
     
     }
 
-    public async searchHostIP<T = unknown>(ip: string, options?: ipSearchOptionsType): Promise<T> {
+    public async searchHostWithIP<T = unknown>(ip: string, options?: ipSearchOptionsType): Promise<T> {
 
         if (!checkers.isAnIpV4(ip) && !checkers.isAnIpV6(ip)) throw new Error(`Error with /shodan/host/{ip}: the ip (${ip}) is not a valid ip address.`)
         
@@ -61,13 +61,13 @@ export class shodanClient {
 
     }
 
-    public async searchHostCount<T = unknown>(query: string, options?: countSearchOptionsType): Promise<T> {
+    public async countHostsWithQuery<T = unknown>(query: string, options?: countSearchOptionsType): Promise<T> {
                 
         return await this.shodanHTTPClientObject.get<T>(`shodan/host/count?${this.buildQueryParams({ query, ...options })}`);
 
     }
 
-    public async searchHostQuery<T = unknown>(query: string, options?: searchOptionsType): Promise<T> {
+    public async searchHostWithQuery<T = unknown>(query: string, options?: searchOptionsType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/host/search?${this.buildQueryParams({ query, ...options })}`);
 
