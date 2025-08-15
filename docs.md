@@ -70,7 +70,7 @@ const countHostsWithQueryMethodJSON = await shodanAPIClient.countHostsWithQuery(
 console.log(countHostsWithQueryMethodJSON);
 ```
 
-## [GET] `async searchHostWithQuery<T>(query, { facets, page, minify }?)` – Search Shodan's host database:
+## [GET] `async searchHostsWithQuery<T>(query, { facets, page, minify }?)` – Search Shodan's host database:
 
 This method allows you to search Shodan’s host (banner) database using a custom query, similar to how searches work on the Shodan website.
 
@@ -90,11 +90,11 @@ This method allows you to search Shodan’s host (banner) database using a custo
 ```js
 // With type and options:
 // Options typed via: searchOptionsType:
-const searchHostWithQueryMethod = await shodanAPIClient.searchHostWithQuery<YourType>("apache country:DE", { facets: "org", page: 3, minify: true });
+const searchHostsWithQueryMethod = await shodanAPIClient.searchHostsWithQuery<YourType>("apache country:DE", { facets: "org", page: 3, minify: true });
 
 // Or for JSON:
-const searchHostWithQueryMethodJSON = await shodanAPIClient.searchHostWithQuery("apache country:DE", { facets: "org", page: 3, minify: true});
-console.log(searchHostWithQueryMethodJSON);
+const searchHostsWithQueryMethodJSON = await shodanAPIClient.searchHostsWithQuery("apache country:DE", { facets: "org", page: 3, minify: true});
+console.log(searchHostsWithQueryMethodJSON);
 ```
 
 ## [GET] `async getSearchFacets<T>()` - Retrieve available search facets from Shodan's database:
@@ -190,7 +190,7 @@ This method allows you to submit a scan request to Shodan, specifying which IPs 
 
 ### Sample:
 ```ts
-import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.4/mod.ts";
+import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.5/mod.ts";
 
 const bodyJSON: postShodanRequestBodyType = {
 

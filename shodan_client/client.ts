@@ -67,7 +67,7 @@ export class shodanClient {
 
     }
 
-    public async searchHostWithQuery<T = unknown>(query: string, options?: searchOptionsType): Promise<T> {
+    public async searchHostsWithQuery<T = unknown>(query: string, options?: searchOptionsType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/host/search?${this.buildQueryParams({ query, ...options })}`);
 
