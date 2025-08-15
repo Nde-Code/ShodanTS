@@ -139,7 +139,7 @@ export class shodanClient {
 
     }
 
-    public async getSavedQueryTags<T = unknown>(options?: tagsOfSavedSearchQueriesOptionsType): Promise<T> {
+    public async getSavedSearchQueryTags<T = unknown>(options?: tagsOfSavedSearchQueriesOptionsType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/query/tags?${this.buildQueryParams(options)}`);
 

@@ -249,11 +249,11 @@ This method retrieves the details of a specific scan using its ID.
 
 ### Sample:
 ```js
-const getScanFromId = await shodanAPIClient.getScanById<YourType>("Scan ID");
+const getScanByIdMethod = await shodanAPIClient.getScanById<YourType>("Scan ID");
 
 // Or for JSON:
-const getScanFromIdJSON = await shodanAPIClient.getScanById("Scan ID");
-console.log(getScanFromIdJSON);
+const getScanByIdMethodJSON = await shodanAPIClient.getScanById("Scan ID");
+console.log(getScanByIdMethodJSON);
 ```
 
 ## [GET] `async getSavedSearchQueries<T>({ page, sort?, order? }?)` – Retrieve a list of saved search queries:
@@ -306,7 +306,7 @@ const directoryWithSavedSearchQueriesMethodJSON = await shodanAPIClient.getDirec
 console.log(directoryWithSavedSearchQueriesMethodJSON)
 ```
 
-## [GET] `async getSavedQueryTags<T>({ size }?)` – Retrieve popular tags from saved search queries:
+## [GET] `async getSavedSearchQueryTags<T>({ size }?)` – Retrieve popular tags from saved search queries:
 
 This method allows you to search the collection of user-saved queries in Shodan.
 
@@ -321,11 +321,11 @@ This method allows you to search the collection of user-saved queries in Shodan.
 ```ts
 // With type and options:
 // Options typed via: tagsOfSavedSearchQueriesOptionsType:
-const getSavedQueryTagsMethod = await shodanAPIClient.getSavedQueryTags<YourType>({ size: 5 }); 
+const getSavedSearchQueryTagsMethod = await shodanAPIClient.getSavedSearchQueryTags<YourType>({ size: 5 }); 
 
 // Or for JSON:
-const getSavedQueryTagsMethodJSON = await shodanAPIClient.getSavedQueryTags({ size: 5 });
-console.log(getSavedQueryTagsMethodJSON);
+const getSavedSearchQueryTagsMethodJSON = await shodanAPIClient.getSavedSearchQueryTags({ size: 5 });
+console.log(getSavedSearchQueryTagsMethodJSON);
 ```
 
 ## [GET] `async getAccountProfile<T>()` – Retrieve information about the account associated with your API key:
