@@ -190,7 +190,7 @@ This method allows you to submit a scan request to Shodan, specifying which IPs 
 
 ### Sample:
 ```ts
-import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.6/mod.ts";
+import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.7/mod.ts";
 
 const bodyJSON: postShodanRequestBodyType = {
 
@@ -274,7 +274,7 @@ This method returns a list of search queries that have been saved by users on Sh
 
 ```ts
 // With type and options:
-// Options typed via: savedSearchQueryOptionsType:
+// Options typed via: savedSearchQueriesOptionsType:
 const getSavedSearchQueriesMethod = await shodanAPIClient.getSavedSearchQueries<YourType>({ page: 3, sort: "votes", order: "desc" }); 
 
 // Or for JSON:

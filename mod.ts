@@ -10,7 +10,7 @@ export type {
 
     postShodanRequestBodyType,
 
-    savedSearchQueryOptionsType,
+    savedSearchQueriesOptionsType,
 
     directoryWithSavedSearchQueriesOptionsType,
 

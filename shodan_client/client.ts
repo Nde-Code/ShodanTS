@@ -21,7 +21,7 @@ import type {
 
     postShodanRequestBodyType,
 
-    savedSearchQueryOptionsType,
+    savedSearchQueriesOptionsType,
 
     directoryWithSavedSearchQueriesOptionsType,
 
@@ -127,7 +127,7 @@ export class shodanClient {
         
     }
 
-    public async getSavedSearchQueries<T = unknown>(options?: savedSearchQueryOptionsType): Promise<T> {
+    public async getSavedSearchQueries<T = unknown>(options?: savedSearchQueriesOptionsType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/query?${this.buildQueryParams(options)}`)
 

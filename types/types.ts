@@ -28,7 +28,7 @@ export interface postShodanRequestBodyType {
 
 }
 
-export interface savedSearchQueryOptionsType {
+export interface savedSearchQueriesOptionsType {
 
     page: number;
 
