@@ -480,15 +480,16 @@ Make sure to use `await` when calling these methods to properly handle the retur
 
 ## Error Handling:
 
-Shodan API returns a JSON object explaining why the request failed:
+Normally, the Shodan API returns a JSON object explaining why the request failed:
 
 ```json
 {
   "error": "Reason why this error happened."
 }
 ```
-See [Shodan API](https://developer.shodan.io/api) for details about error handling.
 
-### For improved security and adherence to best practices, this client will throw an error that includes the HTTP status code, a description, and additional information about the error.
+> See [Shodan API](https://developer.shodan.io/api) for details about error handling.
 
-**Make sure to follow best practices when using this client, such as wrapping each call in a `try/catch` block.**
+**But instead of that, for improved security and adherence to best practices, this client will throw an error that includes the HTTP status code, a description, and additional information about the error.**
+
+So make sure to follow best practices when using this client, such as wrapping each call in a `try/catch` block.
