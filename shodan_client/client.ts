@@ -25,9 +25,9 @@ import type {
 
     directoryWithSavedSearchQueriesOptionsType,
 
-    tagsOfSavedSearchQueriesOptionsType,
+    savedQueryTagsOptionsType,
 
-    allDNSFromADomainOptionsType
+    domainDNSOptionsType
     
 } from "../types/types.ts";
 
@@ -139,7 +139,7 @@ export class shodanClient {
 
     }
 
-    public async getSavedSearchQueryTags<T = unknown>(options?: tagsOfSavedSearchQueriesOptionsType): Promise<T> {
+    public async getSavedSearchQueryTags<T = unknown>(options?: savedQueryTagsOptionsType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/query/tags?${this.buildQueryParams(options)}`);
 
@@ -151,7 +151,7 @@ export class shodanClient {
 
     }
 
-    public async getDNSRecords<T = unknown>(domain: string, options?: allDNSFromADomainOptionsType): Promise<T> {
+    public async getDNSRecords<T = unknown>(domain: string, options?: domainDNSOptionsType): Promise<T> {
 
         if(!checkers.isAValidDomain(domain)) throw new Error(`Error with dns/domain/{domain}: the domain (${domain}) isn't in a valid format.`)
 

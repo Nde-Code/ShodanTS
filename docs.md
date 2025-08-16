@@ -190,7 +190,7 @@ This method allows you to submit a scan request to Shodan, specifying which IPs 
 
 ### Sample:
 ```ts
-import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.5/mod.ts";
+import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.6/mod.ts";
 
 const bodyJSON: postShodanRequestBodyType = {
 
@@ -320,7 +320,7 @@ This method allows you to search the collection of user-saved queries in Shodan.
 
 ```ts
 // With type and options:
-// Options typed via: tagsOfSavedSearchQueriesOptionsType:
+// Options typed via: savedQueryTagsOptionsType:
 const getSavedSearchQueryTagsMethod = await shodanAPIClient.getSavedSearchQueryTags<YourType>({ size: 5 }); 
 
 // Or for JSON:
@@ -367,6 +367,8 @@ This method retrieves subdomains and other DNS records associated with the speci
 ### Sample
 
 ```ts
+// With type and options:
+// Options typed via: domainDNSOptionsType
 const getDNSRecordsMethod = await shodanAPIClient.getDNSRecords<YourType>("google.com", { history: false, type: "CNAME", page: 1 });
 
 // Or for JSON:

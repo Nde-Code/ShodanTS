@@ -44,13 +44,13 @@ export interface directoryWithSavedSearchQueriesOptionsType {
 
 }
 
-export interface tagsOfSavedSearchQueriesOptionsType {
+export interface savedQueryTagsOptionsType {
 
     size: number;
 
 }
 
-export interface allDNSFromADomainOptionsType {
+export interface domainDNSOptionsType {
 
     history: boolean;
 

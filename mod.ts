@@ -14,8 +14,8 @@ export type {
 
     directoryWithSavedSearchQueriesOptionsType,
 
-    tagsOfSavedSearchQueriesOptionsType,
+    savedQueryTagsOptionsType,
 
-    allDNSFromADomainOptionsType
+    domainDNSOptionsType
 
 } from "./types/types.ts";
