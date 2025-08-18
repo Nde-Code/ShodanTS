@@ -14,29 +14,39 @@ export class shodanHTTPClient {
 
         const abortControllerId = setTimeout(() => abortController.abort(), timeout);
 
-        const response = await fetch(this.buildUrl(path), {
+        try {
 
-            method,
+            const response = await fetch(this.buildUrl(path), {
 
-            headers: {
+                method,
 
-                "Content-Type": "application/json",
+                headers: {
 
-                ...headers,
+                    ...(body ? { "Content-Type": "application/json" } : {}), 
+                    
+                    ...headers,
 
-            },
+                },
 
-            body: body ? JSON.stringify(body) : undefined,
+                body: body ? JSON.stringify(body) : undefined,
 
-            signal: abortController.signal,
+                signal: abortController.signal,
 
-        });
+            });
 
-        if (!response.ok) throw new Error(`HTTP error ${response.status}: ${response.statusText} on ${this.buildUrl(path)}`);
+            if (!response.ok) throw new Error(`HTTP error ${response.status}: ${response.statusText} on ${this.buildUrl(path)}`);
 
-        clearTimeout(abortControllerId);
+            return response.json() as Promise<T>;
 
-        return response.json() as Promise<T>;
+        } catch (err) {
+
+            throw new Error(`Request failed: ${(err as Error).message}`);
+
+        } finally {
+
+            clearTimeout(abortControllerId);
+
+        }
 
     }
 
