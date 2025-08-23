@@ -4,7 +4,7 @@ export type {
 
     ipSearchOptionsType,
 
-    countSearchOptionsType,
+    countSearchOptionType,
 
     searchOptionsType,
 
@@ -12,9 +12,9 @@ export type {
 
     savedSearchQueriesOptionsType,
 
-    directoryWithSavedSearchQueriesOptionsType,
+    directoryWithSavedSearchQueriesOptionType,
 
-    savedQueryTagsOptionsType,
+    savedQueryTagsOptionType,
 
     domainDNSOptionsType
 

@@ -62,7 +62,7 @@ This method is used to **count** (and only count) the number of devices found us
 ### Sample:
 ```js
 // With type and options:
-// Options typed via: countSearchOptionsType
+// Options typed via: countSearchOptionType
 const countHostsWithQueryMethod = await shodanAPIClient.countHostsWithQuery<YourType>('port:22', { facets: 'country:2' })
 
 // Or for JSON:
@@ -298,7 +298,7 @@ This method helps you search through the directory of search queries saved by us
 
 ```ts
 // With type and options:
-// Options typed via: directoryWithSavedSearchQueriesOptionsType:
+// Options typed via: directoryWithSavedSearchQueriesOptionType:
 const directoryWithSavedSearchQueriesMethod = await shodanAPIClient.getDirectoryWithSavedSearchQueries<YourType>("country:US", { page: 3 });
 
 // Or for JSON: 
@@ -320,7 +320,7 @@ This method allows you to search the collection of user-saved queries in Shodan.
 
 ```ts
 // With type and options:
-// Options typed via: savedQueryTagsOptionsType:
+// Options typed via: savedQueryTagsOptionType:
 const getSavedSearchQueryTagsMethod = await shodanAPIClient.getSavedSearchQueryTags<YourType>({ size: 5 }); 
 
 // Or for JSON:

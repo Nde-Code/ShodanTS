@@ -6,7 +6,7 @@ export interface ipSearchOptionsType {
 
 }
 
-export interface countSearchOptionsType {
+export interface countSearchOptionType {
 
     facets: string;
 
@@ -38,13 +38,13 @@ export interface savedSearchQueriesOptionsType {
 
 }
 
-export interface directoryWithSavedSearchQueriesOptionsType {
+export interface directoryWithSavedSearchQueriesOptionType {
 
     page: number;
 
 }
 
-export interface savedQueryTagsOptionsType {
+export interface savedQueryTagsOptionType {
 
     size: number;
 

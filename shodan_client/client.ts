@@ -15,7 +15,7 @@ import type {
 
     ipSearchOptionsType,
 
-    countSearchOptionsType,
+    countSearchOptionType,
 
     searchOptionsType,
 
@@ -23,9 +23,9 @@ import type {
 
     savedSearchQueriesOptionsType,
 
-    directoryWithSavedSearchQueriesOptionsType,
+    directoryWithSavedSearchQueriesOptionType,
 
-    savedQueryTagsOptionsType,
+    savedQueryTagsOptionType,
 
     domainDNSOptionsType
     
@@ -61,7 +61,7 @@ export class shodanClient {
 
     }
 
-    public async countHostsWithQuery<T = unknown>(query: string, options?: countSearchOptionsType): Promise<T> {
+    public async countHostsWithQuery<T = unknown>(query: string, options?: countSearchOptionType): Promise<T> {
                 
         return await this.shodanHTTPClientObject.get<T>(`shodan/host/count?${this.buildQueryParams({ query, ...options })}`);
 
@@ -133,13 +133,13 @@ export class shodanClient {
 
     }
 
-    public async getDirectoryWithSavedSearchQueries<T = unknown>(query: string, options?: directoryWithSavedSearchQueriesOptionsType): Promise<T> {
+    public async getDirectoryWithSavedSearchQueries<T = unknown>(query: string, options?: directoryWithSavedSearchQueriesOptionType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/query/search?${this.buildQueryParams({ query, ...options })}`);
 
     }
 
-    public async getSavedSearchQueryTags<T = unknown>(options?: savedQueryTagsOptionsType): Promise<T> {
+    public async getSavedSearchQueryTags<T = unknown>(options?: savedQueryTagsOptionType): Promise<T> {
 
         return await this.shodanHTTPClientObject.get<T>(`shodan/query/tags?${this.buildQueryParams(options)}`);
 
