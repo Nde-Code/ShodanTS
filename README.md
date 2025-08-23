@@ -50,7 +50,7 @@ deno run --allow-net=api.shodan.io example.ts
 #### Or use the code below:
 
 ```ts
-import { shodanClient } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.8/mod.ts";
+import { shodanClient } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.9/mod.ts";
 
 // Of course, never do this in production (never put your secret key directly in the code)!
 // Take a look at: https://docs.deno.com/runtime/reference/env_variables/
