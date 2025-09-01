@@ -5,7 +5,7 @@ Make sure you have correctly imported the client into your project (check the `R
 Then, you can create the main object like this:
 
 ```js
-const shodanAPIClient = new shodanClient("API_Key");
+const shodanAPIClient = new ShodanClient("API_Key");
 ```
 
 - Make sure you have a valid API key in your Shodan account, and be careful when using it. Always be ready to revoke and regenerate your key if it's compromised.
@@ -13,7 +13,7 @@ const shodanAPIClient = new shodanClient("API_Key");
 This client allows you to set a custom timeout for HTTP requests. By default, it's set to **5 seconds**, but you can override it like this:
 
 ```js
-const shodanAPIClient = new shodanClient("API_Key", 8000 /* ms */);
+const shodanAPIClient = new ShodanClient("API_Key", 8000 /* ms */);
 ```
 
 - Some requests can take longer to process, so increasing the timeout can be helpful instead of relying on an unlimited request duration.
@@ -190,7 +190,7 @@ This method allows you to submit a scan request to Shodan, specifying which IPs 
 
 ### Sample:
 ```ts
-import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.0.9/mod.ts";
+import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.1.0/mod.ts";
 
 const bodyJSON: postShodanRequestBodyType = {
 

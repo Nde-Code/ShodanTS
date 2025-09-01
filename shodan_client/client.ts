@@ -31,7 +31,7 @@ import type {
     
 } from "../types/types.ts";
 
-export class shodanClient {
+export class ShodanClient {
 
     private shodanHTTPClientObject: shodanHTTPClient;
 

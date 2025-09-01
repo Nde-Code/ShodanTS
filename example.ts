@@ -1,8 +1,8 @@
-import { shodanClient } from "./mod.ts";
+import { ShodanClient } from "./mod.ts";
 
 // Of course, never do this in production (never put your secret key directly in the code)!
 // Take a look at: https://docs.deno.com/runtime/reference/env_variables/
-const client = new shodanClient("API_Key");
+const client = new ShodanClient("API_Key");
 
 const myProfile = await client.getAccountProfile();
 console.log("Full JSON:", myProfile);

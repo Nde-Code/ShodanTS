@@ -1,4 +1,4 @@
-export { shodanClient } from "./shodan_client/client.ts";
+export { ShodanClient } from "./shodan_client/client.ts";
 
 export type {
 
