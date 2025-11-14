@@ -11,17 +11,17 @@ Please note that this project is independently developed and not officially affi
 **Note**:
 Some methods are not currently implemented. These include:
 
-- **Internet scan** via `shodan/scan/internet` (requires an enterprise license)
+- **Internet scan** via `shodan/scan/internet` *(requires an enterprise license)*
 
 - **Network Alerts**
 
 - **Notifiers**
 
-- **Bulk Data** (requires an enterprise license)
+- **Bulk Data** *(requires an enterprise license)*
 
-- **Manage Organization** (requires an enterprise license)
+- **Manage Organization** *(requires an enterprise license)*
 
-- **Data Streams** (requires an enterprise license)
+- **Data Streams** *(requires an enterprise license)*
 
 ## 🚀 Getting Started:
 
@@ -41,16 +41,16 @@ git clone https://github.com/Nde-Code/ShodanTS.git
 cd ShodanTS
 ```
 
-3. **Run the client (make sure to insert your API key into the code beforehand):**
+3. **Run the client to ensure everything works correctly (make sure to create a `.env` file and add `SHODAN_KEY="<Your_Shodan_key>"`)**
 
 ```bash
-deno run --allow-net=api.shodan.io example.ts
+deno run --allow-net=api.shodan.io --allow-env --env-file=.env tests.ts
 ```
 
 #### Or use the code below:
 
 ```ts
-import { ShodanClient } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.1.1/mod.ts";
+import { ShodanClient } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v4.0.0/mod.ts";
 
 // Of course, never do this in production (never put your secret key directly in the code)!
 // Take a look at: https://docs.deno.com/runtime/reference/env_variables/
@@ -79,7 +79,7 @@ And run your file with the following command:
 deno run --allow-net=api.shodan.io your_file.ts
 ```
 
-Make sure you have correctly configured and installed the Deno extension for Visual Studio Code if you're using this client from a URL. 
+Make sure you have correctly configured and installed the Deno extension for Visual Studio Code.
 
 For guidance, see the [Deno & Visual Studio Code documentation](https://docs.deno.com/runtime/reference/vscode/)
 
@@ -91,7 +91,7 @@ For full usage examples, configuration details, and API command references, chec
 
 ## 🛡️ License:
 
-This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the MIT License, see the [LICENSE](./LICENSE) file for details.
 
 
 ## 🧠 Credits

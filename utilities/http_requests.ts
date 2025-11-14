@@ -1,4 +1,6 @@
-export class shodanHTTPClient {
+import { sanitizeKey, safeThrow } from "./satanize.ts";
+
+export class ShodanHTTPClient {
 
     constructor(private defaultTimeout = 5000) {}
 
@@ -14,9 +16,11 @@ export class shodanHTTPClient {
 
         const abortControllerId = setTimeout(() => abortController.abort(), timeout);
 
+        const URLApistring: string = this.buildUrl(path);
+
         try {
 
-            const response = await fetch(this.buildUrl(path), {
+            const response = await fetch(URLApistring, {
 
                 method,
 
@@ -34,13 +38,13 @@ export class shodanHTTPClient {
 
             });
 
-            if (!response.ok) throw new Error(`HTTP error ${response.status}: ${response.statusText} on ${this.buildUrl(path)}`);
+            if (!response.ok) throw new Error(`HTTP error ${response.status}: ${response.statusText} on ${sanitizeKey(URLApistring)}`);
 
             return response.json() as Promise<T>;
 
         } catch (err) {
 
-            throw new Error(`Request failed: ${(err as Error).message}`);
+            safeThrow("Request failed", err);
 
         } finally {
 

@@ -1,4 +1,4 @@
-export interface ipSearchOptionsType {
+export interface IpSearchOptions {
 
     history: boolean;
 
@@ -6,13 +6,13 @@ export interface ipSearchOptionsType {
 
 }
 
-export interface countSearchOptionType {
+export interface CountSearchOptions {
 
     facets: string;
 
 }
 
-export interface searchOptionsType {
+export interface SearchOptions {
 
     facets: string;
 
@@ -22,13 +22,13 @@ export interface searchOptionsType {
 
 }
 
-export interface postShodanRequestBodyType {
+export interface PostShodanRequestBody {
 
     ips: Record<string, [number, string][]>;
 
 }
 
-export interface savedSearchQueriesOptionsType {
+export interface SavedSearchQueriesOptions {
 
     page: number;
 
@@ -38,19 +38,19 @@ export interface savedSearchQueriesOptionsType {
 
 }
 
-export interface directoryWithSavedSearchQueriesOptionType {
+export interface DirectorySearchOptions {
 
     page: number;
 
 }
 
-export interface savedQueryTagsOptionType {
+export interface SavedQueryTagsOptions {
 
     size: number;
 
 }
 
-export interface domainDNSOptionsType {
+export interface DomainDNSOptions {
 
     history: boolean;
 

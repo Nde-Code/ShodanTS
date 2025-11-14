@@ -1,6 +1,10 @@
 # First of all:
 
-Make sure you have correctly imported the client into your project (check the `README.md`).
+Make sure you have correctly imported the client into your project via:
+
+```ts
+import { ShodanClient } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v4.0.0/mod.ts";
+```
 
 Then, you can create the main object like this:
 
@@ -37,7 +41,7 @@ This method is used to retrieve information about a specific IP address.
 ### Sample:
 ```js
 // With type and options:
-// Options typed via: ipSearchOptionsType
+// Options typed via: IpSearchOptions:
 const searchHostWithIPMethod = await shodanAPIClient.searchHostWithIP<YourType>("8.8.8.8", { minify: true, history: false });
 
 // Quick call without options:
@@ -62,7 +66,7 @@ This method is used to **count** (and only count) the number of devices found us
 ### Sample:
 ```js
 // With type and options:
-// Options typed via: countSearchOptionType
+// Options typed via: CountSearchOptions:
 const countHostsWithQueryMethod = await shodanAPIClient.countHostsWithQuery<YourType>('port:22', { facets: 'country:2' })
 
 // Or for JSON:
@@ -89,7 +93,7 @@ This method allows you to search Shodan’s host (banner) database using a custo
 ### Sample:
 ```js
 // With type and options:
-// Options typed via: searchOptionsType:
+// Options typed via: SearchOptions:
 const searchHostsWithQueryMethod = await shodanAPIClient.searchHostsWithQuery<YourType>("apache country:DE", { facets: "org", page: 3, minify: true });
 
 // Or for JSON:
@@ -190,9 +194,9 @@ This method allows you to submit a scan request to Shodan, specifying which IPs 
 
 ### Sample:
 ```ts
-import type { postShodanRequestBodyType } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v3.1.1/mod.ts";
+import type { PostShodanRequestBody } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v4.0.0/mod.ts";
 
-const bodyJSON: postShodanRequestBodyType = {
+const bodyJSON: PostShodanRequestBody = {
 
   ips: {
 
@@ -274,7 +278,7 @@ This method returns a list of search queries that have been saved by users on Sh
 
 ```ts
 // With type and options:
-// Options typed via: savedSearchQueriesOptionsType:
+// Options typed via: SavedSearchQueriesOptions:
 const getSavedSearchQueriesMethod = await shodanAPIClient.getSavedSearchQueries<YourType>({ page: 3, sort: "votes", order: "desc" }); 
 
 // Or for JSON:
@@ -298,7 +302,7 @@ This method helps you search through the directory of search queries saved by us
 
 ```ts
 // With type and options:
-// Options typed via: directoryWithSavedSearchQueriesOptionType:
+// Options typed via: DirectorySearchOptions:
 const directoryWithSavedSearchQueriesMethod = await shodanAPIClient.getDirectoryWithSavedSearchQueries<YourType>("country:US", { page: 3 });
 
 // Or for JSON: 
@@ -320,7 +324,7 @@ This method allows you to search the collection of user-saved queries in Shodan.
 
 ```ts
 // With type and options:
-// Options typed via: savedQueryTagsOptionType:
+// Options typed via: SavedQueryTagsOptions:
 const getSavedSearchQueryTagsMethod = await shodanAPIClient.getSavedSearchQueryTags<YourType>({ size: 5 }); 
 
 // Or for JSON:
@@ -368,7 +372,7 @@ This method retrieves subdomains and other DNS records associated with the speci
 
 ```ts
 // With type and options:
-// Options typed via: domainDNSOptionsType
+// Options typed via: DomainDNSOptions:
 const getDNSRecordsMethod = await shodanAPIClient.getDNSRecords<YourType>("google.com", { history: false, type: "CNAME", page: 1 });
 
 // Or for JSON:

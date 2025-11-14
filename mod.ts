@@ -1,21 +1,21 @@
-export { ShodanClient } from "./shodan_client/client.ts";
+export { ShodanClient } from "./client/client.ts";
 
 export type {
 
-    ipSearchOptionsType,
+    IpSearchOptions,
 
-    countSearchOptionType,
+    CountSearchOptions,
 
-    searchOptionsType,
+    SearchOptions,
 
-    postShodanRequestBodyType,
+    PostShodanRequestBody,
 
-    savedSearchQueriesOptionsType,
+    SavedSearchQueriesOptions,
 
-    directoryWithSavedSearchQueriesOptionType,
+    DirectorySearchOptions,
 
-    savedQueryTagsOptionType,
+    SavedQueryTagsOptions,
 
-    domainDNSOptionsType
+    DomainDNSOptions
 
 } from "./types/types.ts";
