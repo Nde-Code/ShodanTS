@@ -25,29 +25,7 @@ Some methods are not currently implemented. These include:
 
 ## 🚀 Getting Started:
 
-0. **Install the required items:**
-
-If you haven't already, install the [Deno runtime](https://docs.deno.com/runtime/reference/cli/install/) and create an account on [Shodan](https://account.shodan.io/) to obtain your API key.
-
-1. **Clone the repository:**
-
-```bash
-git clone https://github.com/Nde-Code/ShodanTS.git
-```
-
-2. **Go in the ShodanTS cloned folder:**
-
-```bash
-cd ShodanTS
-```
-
-3. **Run the client to ensure everything works correctly (make sure to create a `.env` file and add `SHODAN_KEY="<Your_Shodan_key>"`)**
-
-```bash
-deno run --allow-net=api.shodan.io --allow-env --env-file=.env tests.ts
-```
-
-#### Or use the code below:
+Just initialize a Deno project, create a file (e.g., `your_file.ts`), and insert the following code:
 
 ```ts
 import { ShodanClient } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v4.0.0/mod.ts";
@@ -73,17 +51,41 @@ console.log("Displayed name:", myProfileAsType.display_name);
 console.log("Account created on:", myProfileAsType.created);
 ```
 
-And run your file with the following command:
+and run your file with the following command:
 
 ```bash
 deno run --allow-net=api.shodan.io your_file.ts
 ```
 
-Make sure you have correctly configured and installed the Deno extension for Visual Studio Code.
+Make sure you have properly configured and installed the Deno extension for Visual Studio Code to ensure a smooth and comfortable setup.
 
 For guidance, see the [Deno & Visual Studio Code documentation](https://docs.deno.com/runtime/reference/vscode/)
 
 You can also use my `settings.json` file located at: [`.vscode/settings.json`](.vscode/settings.json)
+
+## 🔧 Working on this project locally:
+
+0. **Install the required items:**
+
+If you haven't already, install the [Deno runtime](https://docs.deno.com/runtime/reference/cli/install/) and create an account on [Shodan](https://account.shodan.io/) to obtain your API key.
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/Nde-Code/ShodanTS.git
+```
+
+2. **Go in the ShodanTS cloned folder:**
+
+```bash
+cd ShodanTS
+```
+
+3. **Run the client to ensure everything works correctly (make sure to create a `.env` file and add `SHODAN_KEY="<Your_Shodan_key>"`)**
+
+```bash
+deno run --allow-net=api.shodan.io --allow-env --env-file=.env tests.ts
+```
 
 ## 📚 Documentation:
 
