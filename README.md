@@ -75,7 +75,7 @@ If you haven't already, install the [Deno runtime](https://docs.deno.com/runtime
 git clone https://github.com/Nde-Code/ShodanTS.git
 ```
 
-2. **Go in the ShodanTS cloned folder:**
+2. **Go into the cloned ShodanTS folder by clicking on it, or by running the following command in your terminal:**
 
 ```bash
 cd ShodanTS
