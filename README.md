@@ -27,12 +27,12 @@ Some methods are not currently implemented. These include:
 
 Just initialize a Deno project, create a file (e.g., `your_file.ts`), and insert the following code:
 
+> Create a `.env` file in the same directory as `your_file.ts` and add `SHODAN_KEY="<Your_Shodan_key>"`. For more details, see the [Deno environment variables documentation](https://docs.deno.com/runtime/reference/env_variables/).
+
 ```ts
 import { ShodanClient } from "https://raw.githubusercontent.com/Nde-Code/ShodanTS/v4.0.0/mod.ts";
 
-// Of course, never do this in production (never put your secret key directly in the code)!
-// Take a look at: https://docs.deno.com/runtime/reference/env_variables/
-const client = new ShodanClient("API_Key");
+const client = new ShodanClient(Deno.env.get("SHODAN_KEY") ?? "");
 
 const myProfile = await client.getAccountProfile();
 console.log("Full JSON:", myProfile);
