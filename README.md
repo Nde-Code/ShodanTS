@@ -54,7 +54,7 @@ console.log("Account created on:", myProfileAsType.created);
 and run your file with the following command:
 
 ```bash
-deno run --allow-net=api.shodan.io your_file.ts
+deno run --allow-env --env-file=.env --allow-net=api.shodan.io your_file.ts
 ```
 
 Make sure you have properly configured and installed the Deno extension for Visual Studio Code to ensure a smooth and comfortable setup.
